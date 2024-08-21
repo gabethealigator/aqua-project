@@ -1,15 +1,15 @@
-{% include 'aquasite/partials/head.html' %}
+{% extends 'aquasite/partials/base.html' %}
+{% block title %}AQUA | Homepage{% endblock %}
 
-<body>
-	{% include 'aquasite/partials/header.html' %}
+{% block body-content %}
+{% include 'aquasite/partials/navbar.html' %}
 
-	<div class="container mt-5">
-		<div
-			class="d-flex flex-column justify-content-center align-items-center gap-4"
-		>
-			<i class="fa-solid fa-house fa-2xl" style="color: #000000"></i>
-			<h1>Homepage</h1>
-		</div>
+<div class="container mt-5">
+	<div
+		class="d-flex flex-column justify-content-center align-items-center gap-4"
+	>
+		<i class="fa-solid fa-house fa-2xl" style="color: #000000"></i>
+		<h1>Homepage</h1>
 	</div>
-</body>
-</html>
+</div>
+{% endblock %}

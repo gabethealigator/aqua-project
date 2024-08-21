@@ -15,6 +15,11 @@
 			type="text/css"
 		/>
 
-		<title>AQUA | Home</title>
+		{% block extra-head-content %}{% endblock %}
+
+		<title>{% block title %}{% endblock %}</title>
 	</head>
+	<body>
+		{% block body-content %}{% endblock %}
+	</body>
 </html>
