@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     'aquasite',
     'bootstrap5',
+    'fontawesomefree',
 ]
 
 MIDDLEWARE = [

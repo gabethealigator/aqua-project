@@ -1,16 +1,30 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+		<!-- Bootstrap -->
 		{% load bootstrap5 %} {% bootstrap_css %} {% bootstrap_javascript %}
+
+		<!-- Font Awesome -->
+		<link
+			href="{% static 'aquasite/fa/css/all.min.css' %}"
+			rel="stylesheet"
+			type="text/css"
+		/>
 
 		<title>AQUA | Home</title>
 	</head>
 	<body>
 		<div class="container mt-5">
-			<h1>Homepage</h1>
+			<div
+				class="d-flex flex-column justify-content-center align-items-center gap-4"
+			>
+				<i class="fa-solid fa-house fa-2xl" style="color: #000000"></i>
+				<h1>Homepage</h1>
+			</div>
 		</div>
 	</body>
 </html>
