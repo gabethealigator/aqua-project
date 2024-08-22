@@ -32,10 +32,12 @@ class userAuth:
     return render(request, 'aquasite/pages/auth.html')
   
   def login(request):
+    global userId
     email = request.POST.get('login-email')
     password = request.POST.get('login-password')
     try:
       user = auth.sign_in_with_email_and_password(email, password)
+      userId = user['localId']
       return redirect('dashboard')
     except:
       return redirect('auth')
@@ -74,11 +76,11 @@ class userAuth:
             userAuth.userRegister.password
             )
           userId = user['localId']
-          userInfo = {
+          userData = {
             'name': userAuth.userRegister.name,
             'email': userAuth.userRegister.email
           }
-          database.child('UsersData').child(userId).update(userInfo)
+          database.child('UsersData').child(userId).update(userData)
           return redirect('dashboard')
         except:
           return redirect('verification')
@@ -86,4 +88,11 @@ class userAuth:
         return redirect('verification')
   
 def dashboard(request):
-  return render(request, 'aquasite/pages/dashboard.html')
+  user = database.child('UsersData').child(userId)
+  modules = {
+    'modules': user.child('modules').get().val()
+  }
+
+  
+
+  return render(request, 'aquasite/pages/dashboard.html', modules)
