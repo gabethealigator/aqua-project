@@ -7,16 +7,17 @@
     <div class="d-flex justify-content-center gap-4">
       <div class="card h-100" id="login">
         <div class="card-body">
-          <form action="" method="post">
+          <form action="{% url 'login' %}" method="post">
+            {% csrf_token %}
             <div class="d-flex flex-column justify-content-between">
               <div>
                 <div class="mb-3">
-                  <label class="form-label">Email</label>
-                  <input type="email" class="form-control">
+                  <label for="login-email" class="form-label">Email</label>
+                  <input type="email" class="form-control" name="login-email">
                 </div>
                 <div class="mb-3">
-                  <label class="form-label">Senha</label>
-                  <input type="password" class="form-control">
+                  <label for="login-password" class="form-label">Senha</label>
+                  <input type="password" class="form-control" name="login-password">
                 </div>
               </div>
               <div>
@@ -31,16 +32,16 @@
         <div class="card-body">
           <form action="" method="post">
             <div class="mb-3">
-              <label class="form-label">Nome</label>
-              <input type="text" class="form-control">
+              <label for="register-name" class="form-label">Nome</label>
+              <input type="text" class="form-control" name="register-name">
             </div>
             <div class="mb-3">
-              <label class="form-label">Email</label>
-              <input type="email" class="form-control">
+              <label for="register-email" class="form-label">Email</label>
+              <input type="email" class="form-control" name="register-email">
             </div>
             <div class="mb-3">
-              <label class="form-label">Senha</label>
-              <input type="password" class="form-control">
+              <label for="register-password" class="form-label">Senha</label>
+              <input type="password" class="form-control" name="register-password">
             </div>
             <button type="submit" class="btn btn-primary w-100">Enviar</button>
           </form>

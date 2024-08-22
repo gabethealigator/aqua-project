@@ -25,5 +25,14 @@ class userAuth:
   def auth(request):
     return render(request, 'aquasite/pages/auth.html')
   
+  def login(request):
+    email = request.POST.get('login-email')
+    password = request.POST.get('login-password')
+    try:
+      user = auth.sign_in_with_email_and_password(email, password)
+      return redirect('dashboard')
+    except:
+      return redirect('auth')
+  
 def dashboard(request):
   return render(request, 'aquasite/pages/dashboard.html')
