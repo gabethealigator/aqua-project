@@ -30,7 +30,8 @@
 
       <div class="card" id="register">
         <div class="card-body">
-          <form action="" method="post">
+          <form action="{% url 'verification' %}" method="post">
+            {% csrf_token %}
             <div class="mb-3">
               <label for="register-name" class="form-label">Nome</label>
               <input type="text" class="form-control" name="register-name">

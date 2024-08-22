@@ -1,0 +1,24 @@
+{% extends 'aquasite/partials/base.html' %}
+
+{% block title %}AQUA | Verificação{% endblock %}
+
+{% block body-content %}
+  <div class="container mt-5">
+    <div class="d-flex justify-content-center">
+      <div class="card">
+        <div class="card-body">
+          <form action="{% url 'register' %}" method="post">
+            {% csrf_token %}
+            <div class="d-flex flex-column justify-content-between">
+              <div class="mb-3">
+                <label for="verification-code-input" class="form-label">Código de verificação</label>
+                <input type="text" class="form-control" name="verification-code-input">
+              </div>
+              <button type="submit" class="btn btn-primary w-100">Enviar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -1,8 +1,12 @@
 from django.shortcuts import render, redirect
 
+from django.http import HttpResponseRedirect
+
+from django.core.mail import send_mail
+
 from decouple import config
 
-import pyrebase
+import pyrebase, random, string
 
 firebaseConfig = {
   'apiKey': config('FIREBASE_API_KEY'),
@@ -33,6 +37,44 @@ class userAuth:
       return redirect('dashboard')
     except:
       return redirect('auth')
+    
+  class userRegister:
+    def codeGenerator(length=5, caracteres=string.digits):
+      return ''.join(random.choice(caracteres) for _ in range(length))
+
+    name = None
+    email = None
+    password = None
+    code = codeGenerator()
+    
+    def verification(request):
+      if request.META.get('HTTP_REFERER', '').endswith('/authentication/'):
+        userAuth.userRegister.name = request.POST.get('register-name')
+        userAuth.userRegister.email = request.POST.get('register-email')
+        userAuth.userRegister.password = request.POST.get('register-password')
+        send_mail(
+          'AQUA - Código de verificação de email',
+          f'Opa {userAuth.userRegister.name}! \nSeu código de verificação é: {userAuth.userRegister.code}',
+          'aquaseaware@gmail.com',
+          [userAuth.userRegister.email],
+          fail_silently=False,
+        )
+      return render(request, 'aquasite/pages/verification.html')
+
+    def register(request):
+      inputCode = request.POST.get('verification-code-input')
+      emailCode = userAuth.userRegister.code
+      if inputCode == emailCode:
+        try:
+          auth.create_user_with_email_and_password(
+            userAuth.userRegister.email, 
+            userAuth.userRegister.password
+            )
+          return redirect('dashboard')
+        except:
+          return redirect('verification')
+      elif inputCode != emailCode:
+        return redirect('verification')
   
 def dashboard(request):
   return render(request, 'aquasite/pages/dashboard.html')
