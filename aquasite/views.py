@@ -6,3 +6,9 @@ def home(request):
 class userAuth:
   def auth(request):
     return render(request, 'aquasite/pages/auth.html')
+  
+  def login(request):
+    return
+  
+def dashboard(request):
+  return render(request, 'aquasite/pages/dashboard.html')
