@@ -22,6 +22,8 @@ firebase = pyrebase.initialize_app(firebaseConfig)
 database = firebase.database()
 auth = firebase.auth()
 
+userId = None
+
 def home(request):
   return render(request, 'aquasite/pages/home.html')
 
@@ -62,14 +64,21 @@ class userAuth:
       return render(request, 'aquasite/pages/verification.html')
 
     def register(request):
+      global userId
       inputCode = request.POST.get('verification-code-input')
       emailCode = userAuth.userRegister.code
       if inputCode == emailCode:
         try:
-          auth.create_user_with_email_and_password(
+          user = auth.create_user_with_email_and_password(
             userAuth.userRegister.email, 
             userAuth.userRegister.password
             )
+          userId = user['localId']
+          userInfo = {
+            'name': userAuth.userRegister.name,
+            'email': userAuth.userRegister.email
+          }
+          database.child('UsersData').child(userId).update(userInfo)
           return redirect('dashboard')
         except:
           return redirect('verification')
