@@ -88,11 +88,14 @@ class userAuth:
         return redirect('verification')
   
 def dashboard(request):
-  user = database.child('UsersData').child(userId)
-  modules = {
-    'modules': user.child('modules').get().val()
-  }
+  modules = database.child('UsersData').child(userId).child('modules').get().val()
+  if modules != None:
+      context = {
+        'modules': list(modules.keys()),
+      }
+  else:
+    context = {
+      'modules': ['Não tem módulos.']
+    }
 
-  
-
-  return render(request, 'aquasite/pages/dashboard.html', modules)
+  return render(request, 'aquasite/pages/dashboard.html', context)
