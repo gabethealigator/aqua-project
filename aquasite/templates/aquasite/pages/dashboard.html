@@ -3,7 +3,20 @@
 {% block title %}AQUA | Painel{% endblock %}
 
 {% block body-content %}
-  <div class="container mt-5">
-    <h1>Painel</h1>
-  </div>
+{% include 'aquasite/partials/dashboard-navbar.html' %}
+  <section id="models" class="h-100">
+    <div class="container mt-5 w-100 h-100">
+      <div class="models-container w-100 h-100">
+        <div class="models-content d-flex flex-column gap-4">
+          <div class="row" style="min-height: 250px;">
+            <div class="col-3">
+              <button type="button" class="btn border w-100 h-100">
+                Módulo
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 {% endblock %}

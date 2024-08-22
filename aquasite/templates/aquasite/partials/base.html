@@ -18,6 +18,19 @@
 		{% block extra-head-content %}{% endblock %}
 
 		<title>{% block title %}{% endblock %}</title>
+
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			body {
+				width: 100dvw;
+				height: calc(100dvh - 50px)
+			}
+		</style>
 	</head>
 	<body>
 		{% block body-content %}{% endblock %}

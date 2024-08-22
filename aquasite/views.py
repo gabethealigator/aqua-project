@@ -54,7 +54,7 @@ class userAuth:
         userAuth.userRegister.password = request.POST.get('register-password')
         send_mail(
           'AQUA - Código de verificação de email',
-          f'Opa {userAuth.userRegister.name}! \nSeu código de verificação é: {userAuth.userRegister.code}',
+          f'Opa, {userAuth.userRegister.name}! \nSeu código de verificação é: {userAuth.userRegister.code}',
           'aquaseaware@gmail.com',
           [userAuth.userRegister.email],
           fail_silently=False,
