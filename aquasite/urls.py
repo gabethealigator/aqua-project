@@ -8,5 +8,6 @@ urlpatterns = [
   path('verification/', views.userAuth.userRegister.verification, name='verification'),
   path('register/', views.userAuth.userRegister.register, name='register'),
 
-  path('dashboard/', views.dashboard, name='dashboard'),
+  path('dashboard/', views.userDashboard.dashboard, name='dashboard'),
+  path('dashboard/<int:moduleId>/', views.userDashboard.module, name='module'),
 ]

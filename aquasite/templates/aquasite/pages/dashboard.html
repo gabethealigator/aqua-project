@@ -9,12 +9,14 @@
       <div class="models-container w-100 h-100">
         <div class="models-content d-flex flex-column gap-4">
           <div class="row" style="min-height: 250px;">
-            {% for module in modules %}
+            {% for moduleId in modulesId %}
               <div class="col-3">
-                <button type="button" class="btn border w-100 h-100">
-                  <p class="mb-2">ID do Módulo:</p>
-                  <span>{{module}}</span> 
-                </button>
+                <a href="{% url 'module' moduleId=moduleId %}">
+                  <button type="button" class="btn border w-100 h-100">
+                    <p class="mb-2">ID do Módulo:</p>
+                    <span>{{moduleId}}</span> 
+                  </button>
+                </a>
               </div>
             {% endfor %}
           </div>

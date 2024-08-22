@@ -1,0 +1,11 @@
+{% extends 'aquasite/partials/base.html' %}
+
+{% block title %}AQUA | Módulo {{moduleId}}{% endblock %}
+
+{% block body-content %}
+{% include 'aquasite/partials/dashboard-navbar.html' %}
+
+  <div class="container mt-5">
+    <p>{{info}}</p>
+  </div>
+{% endblock %}

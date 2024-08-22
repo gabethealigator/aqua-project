@@ -87,15 +87,20 @@ class userAuth:
       elif inputCode != emailCode:
         return redirect('verification')
   
-def dashboard(request):
-  modules = database.child('UsersData').child(userId).child('modules').get().val()
-  if modules != None:
+class userDashboard:
+  def dashboard(request):
+    modules = database.child('UsersData').child(userId).child('modules').get().val()
+    if modules != None:
       context = {
-        'modules': list(modules.keys()),
+        'modulesId': list(modules.keys()),
       }
-  else:
-    context = {
-      'modules': ['Não tem módulos.']
-    }
+      return render(request, 'aquasite/pages/dashboard.html', context)
+    else:
+      return render(request, 'aquasite/pages/dashboard.html')
 
-  return render(request, 'aquasite/pages/dashboard.html', context)
+  def module(request, moduleId):
+    context = {
+      'moduleId': moduleId,
+      'info': f'Aqui ficarão as informações do módulo: {moduleId}',
+    }
+    return render(request, 'aquasite/pages/module.html', context)
