@@ -7,22 +7,15 @@
   <section id="models" class="h-100">
     <div class="container mt-5 w-100 h-100">
       <div class="models-container w-100 h-100">
-        <div class="models-content d-flex flex-column gap-4">
-          <p>{{gridRows}}</p>
-          {% for row in gridRows %}
-            <div class="row" style="min-height: 250px;">
-              {% for moduleId in modulesId %}
-                <div class="col-3">
-                  <a href="{% url 'module' moduleId=moduleId %}">
-                    <button type="button" class="btn border w-100 h-100">
-                      <p class="mb-2">ID do Módulo:</p>
-                      <span>{{moduleId}}</span>
-                    </button>
-                  </a>
-                </div>
-              {% endfor %}
-            </div>
-          {% endfor %}
+        <div class="models-content d-flex flex-wrap align-items-center gap-4">
+            {% for moduleId in modulesId %}
+              <a href="{% url 'module' moduleId=moduleId %}">
+                <button type="button" class="btn border" style="width: 306px; height: 306px;">
+                  <p class="mb-2">ID do Módulo:</p>
+                  <span>{{moduleId}}</span>
+                </button>
+              </a>
+            {% endfor %}
         </div>
       </div>
     </div>
