@@ -91,8 +91,16 @@ class userDashboard:
   def dashboard(request):
     modules = database.child('UsersData').child(userId).child('modules').get().val()
     if modules != None:
+      def requiredHTMLGridRows():
+        numberOfModules = len(modulesId)
+        numbersOfRows = (numberOfModules + 3) // 4
+        gridRows = list((range(numbersOfRows)))
+        return gridRows
+      
+      modulesId = list(modules.keys())
       context = {
-        'modulesId': list(modules.keys()),
+        'gridRows': requiredHTMLGridRows(),
+        'modulesId': modulesId,
       }
       return render(request, 'aquasite/pages/dashboard.html', context)
     else:
