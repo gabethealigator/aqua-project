@@ -105,3 +105,6 @@ class userDashboard:
       'info': f'Aqui ficarão as informações do módulo: {moduleId}',
     }
     return render(request, 'aquasite/pages/module.html', context)
+  
+  def account(request):
+    return render(request, 'aquasite/pages/account.html')

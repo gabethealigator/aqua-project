@@ -10,4 +10,5 @@ urlpatterns = [
 
   path('dashboard/', views.userDashboard.dashboard, name='dashboard'),
   path('dashboard/<int:moduleId>/', views.userDashboard.module, name='module'),
+  path('dashboard/account/', views.userDashboard.account, name='account'),
 ]
