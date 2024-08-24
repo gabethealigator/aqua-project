@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse
 
 from django.core.mail import send_mail
 
@@ -26,6 +26,12 @@ userId = None
 
 def home(request):
   return render(request, 'aquasite/pages/home.html')
+
+def aboutUs(request):
+  return render(request, 'aquasite/pages/about-us.html')
+
+def contact(request):
+  return render(request, 'aquasite/pages/contact.html')
 
 class userAuth:
   def auth(request):

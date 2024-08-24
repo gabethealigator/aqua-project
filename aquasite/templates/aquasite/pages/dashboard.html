@@ -4,9 +4,9 @@
 
 {% block body-content %}
 {% include 'aquasite/partials/dashboard-navbar.html' %}
-  <section id="models" class="h-100">
+  <section id="models">
     <div class="container mt-5 w-100 h-100">
-      <div class="models-container w-100 h-100">
+      <div class="models-container pt-4 w-100 h-100">
         <div class="models-content d-flex flex-wrap align-items-center gap-4">
             {% for moduleId in modulesId %}
               <a href="{% url 'module' moduleId=moduleId %}">
