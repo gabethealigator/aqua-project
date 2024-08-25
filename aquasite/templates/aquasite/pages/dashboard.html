@@ -4,9 +4,20 @@
 
 {% block body-content %}
 {% include 'aquasite/partials/dashboard-navbar.html' %}
+  <div class="container mt-5">
+    <ul class="nav nav-tabs pt-4">
+      <li class="nav-item">
+        <button class="nav-link active" id="models-tab">Módulos</button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link" id="reports-tab">Relatórios</button>
+      </li>
+    </ul>
+  </div>
+
   <section id="models">
-    <div class="container mt-5 w-100 h-100">
-      <div class="models-container pt-4 w-100 h-100">
+    <div class="container">
+      <div class="models-container pt-4">
         <div class="models-content d-flex flex-wrap align-items-center gap-4">
             {% for moduleId in modulesId %}
               <a href="{% url 'module' moduleId=moduleId %}">
@@ -20,4 +31,66 @@
       </div>
     </div>
   </section>
+
+  <section id="reports" style="display: none;">
+    <div class="container pt-4">
+      <div class="reports-container">
+        <div class="reports-content d-flex gap-4">
+          <div class="filters w-25">
+            <ul class="list-group">
+              <li class="list-group-item">Filtros</li>
+              <li class="list-group-item">
+                <input class="form-check-input me-1" type="radio" name="listGroupRadio" value="" id="firstRadio" checked>
+                <label class="form-check-label" for="firstRadio">Todos os relatórios</label>
+              </li>
+              {% for moduleId in modulesId %}
+                <li class="list-group-item">
+                  <input class="form-check-input me-1" type="radio" name="listGroupRadio" value="" id="secondRadio">
+                  <label class="form-check-label" for="secondRadio">Módulo {{moduleId}}</label>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+
+          <div class="reports w-100">
+            <ul class="list-group list-group-horizontal-xxl">
+              <li class="list-group-item w-100">An item</li>
+              <li class="list-group-item w-100">An item</li>
+              <li class="list-group-item w-100">An item</li>
+              <li class="list-group-item w-100">An item</li>
+              <li class="list-group-item w-100">An item</li>
+              <li class="list-group-item w-100">An item</li>
+              <li class="list-group-item w-100">An item</li>
+              <li class="list-group-item w-100">An item</li>
+              <li class="list-group-item w-100">An item</li>
+              <li class="list-group-item w-100">An item</li>
+              <li class="list-group-item w-100">An item</li>
+              <li class="list-group-item w-100">An item</li>
+              <li class="list-group-item w-100">An item</li>
+              <li class="list-group-item w-100">An item</li>
+              <li class="list-group-item w-100">An item</li>
+            </ul>            
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const models = document.getElementById('models')
+    const reports = document.getElementById('reports')
+    const tabs = document.getElementsByClassName('nav-link')
+
+    for (let tab = 0; tab < tabs.length; tab++) {
+      tabs[tab].addEventListener('click', (event) => {
+        const tab = event.target
+        for (let i = 0; i < tabs.length; i++) {
+          tabs[i].classList.toggle('active') 
+        }
+        tab.id == 'models-tab' 
+          ? (models.style.display = 'block', reports.style.display = 'none')
+          : (models.style.display = 'none', reports.style.display = 'block')
+      })
+    }
+  </script>
 {% endblock %}
