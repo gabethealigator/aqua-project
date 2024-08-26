@@ -7,10 +7,10 @@
   <div class="container mt-5">
     <ul class="nav nav-tabs pt-4">
       <li class="nav-item">
-        <button class="nav-link active" id="models-tab">Módulos</button>
+        <button class="nav-link tab active" id="models-tab">Módulos</button>
       </li>
       <li class="nav-item">
-        <button class="nav-link" id="reports-tab">Relatórios</button>
+        <button class="nav-link tab" id="reports-tab">Relatórios</button>
       </li>
     </ul>
   </div>
@@ -79,7 +79,7 @@
   <script>
     const models = document.getElementById('models')
     const reports = document.getElementById('reports')
-    const tabs = document.getElementsByClassName('nav-link')
+    const tabs = document.getElementsByClassName('tab')
 
     for (let tab = 0; tab < tabs.length; tab++) {
       tabs[tab].addEventListener('click', (event) => {
