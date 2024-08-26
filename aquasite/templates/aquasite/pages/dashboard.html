@@ -20,14 +20,38 @@
       <div class="models-container pt-4">
         <div class="models-content d-flex flex-wrap align-items-center gap-4">
             {% for moduleId in modulesId %}
-              <a href="{% url 'module' moduleId=moduleId %}">
-                <button type="button" class="btn border" style="width: 261px; height: 261px;">
-                  <p class="mb-2">ID do Módulo:</p>
-                  <span>{{moduleId}}</span>
+              <!-- <a href="{% url 'module' moduleId=moduleId %}"> -->
+                <button type="button" class="btn p-4 border" data-bs-toggle="modal" data-bs-target="#module-{{moduleId}}-name-modal" style="width: 261px; height: 261px;">
+                  <div class="d-flex flex-column align-items-center w-100">
+                    <p>{{moduleName}}</p>
+                    <p class="m-0"><small>ID: {{moduleId}}</small></p>
+                  </div>
                 </button>
-              </a>
+              <!-- </a> -->
+
+              <div class="modal fade" id="module-{{moduleId}}-name-modal" tabindex="-1" aria-labelledby="module-name-modal" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5">Nome do módulo</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form action="{% url 'module' moduleId=moduleId %}" method="post">
+                      {% csrf_token %}
+                      <div class="modal-body">
+                        <label for="module-name" class="form-label">Insira um nome para o módulo:</label>
+                        <input type="text" class="form-control" id="module-name" name="module-name">
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                        <input type="submit" class="btn btn-primary" value="Enviar">
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
             {% endfor %}
-        </div>
+        </div>      
       </div>
     </div>
   </section>
