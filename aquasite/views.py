@@ -111,6 +111,20 @@ class userDashboard:
       'info': f'Aqui ficarão as informações do módulo: {moduleId}',
     }
     return render(request, 'aquasite/pages/module.html', context)
-  
+
   def account(request):
-    return render(request, 'aquasite/pages/account.html')
+    name = database.child('UsersData').child(userId).child('name').get().val()
+    email = database.child('UsersData').child(userId).child('email').get().val()
+    modules = database.child('UsersData').child(userId).child('modules').get().val()
+    
+    if modules != None:
+      modules = len(list(modules.keys()))
+    elif modules == None:
+      modules = 0
+
+    context = {
+      'name': name,
+      'email': email,
+      'modules': modules,
+    }
+    return render(request, 'aquasite/pages/account.html', context)
