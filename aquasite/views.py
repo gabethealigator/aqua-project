@@ -96,20 +96,29 @@ class userAuth:
 class userDashboard:
   def dashboard(request):
     modules = database.child('UsersData').child(userId).child('modules').get().val()
-    moduleName = 'Módulo sem nome'
     if modules != None:
       modulesId = list(modules.keys())
+      moduleName = 'Módulo sem nome'
+      context = {
+        'modulesId': modulesId,
+        'moduleName': moduleName,
+      }
+      return render(request, 'aquasite/pages/dashboard.html', context)
+    elif modules == None:
+      modulesId = []
+      moduleName = ''
       context = {
         'modulesId': modulesId,
         'moduleName': moduleName,
       }
       return render(request, 'aquasite/pages/dashboard.html', context)
     else:
-      return render(request, 'aquasite/pages/dashboard.html')
+      return HttpResponse('Error.')
 
   def module(request, moduleId):
     moduleName = request.POST.get('module-name')
-    database.child('UsersData').child(userId).child('modules').child(moduleId).update({'moduleName': moduleName})
+    if moduleName != None:
+      database.child('UsersData').child(userId).child('modules').child(moduleId).update({'moduleName': moduleName})
     context = {
       'moduleId': moduleId,
       'moduleName': moduleName,
