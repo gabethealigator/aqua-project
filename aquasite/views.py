@@ -116,12 +116,10 @@ class userDashboard:
     name = database.child('UsersData').child(userId).child('name').get().val()
     email = database.child('UsersData').child(userId).child('email').get().val()
     modules = database.child('UsersData').child(userId).child('modules').get().val()
-    
     if modules != None:
       modules = len(list(modules.keys()))
     elif modules == None:
       modules = 0
-
     context = {
       'name': name,
       'email': email,
