@@ -6,6 +6,13 @@
 {% include 'aquasite/partials/dashboard-navbar.html' %}
 
   <div class="container mt-5">
-    <p>Este é o nome do módulo: {{moduleName}}</p>
+    <nav class="pt-4" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Painel</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Módulo</li>
+      </ol>
+    </nav>
+
+    <p>Nome do módulo: {{moduleName}}</p>
   </div>
 {% endblock %}

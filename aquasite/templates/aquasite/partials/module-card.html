@@ -24,7 +24,7 @@
         <form id="module-name-form" action="{% url 'module' moduleId=module_id %}" method="post">
           {% csrf_token %}
           <div class="modal-body">
-            <label for="module-name" class="form-label">Adicione um nome para o módulo:</label>
+            <label for="module-name" class="form-label">Dê um nome ao módulo:</label>
             <input type="text" class="form-control" id="module-name" name="module-name">
           </div>
           <div class="modal-footer">
