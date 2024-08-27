@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 
 from django.core.mail import send_mail
 
@@ -97,25 +97,22 @@ class userDashboard:
   def dashboard(request):
     modules = database.child('UsersData').child(userId).child('modules').get().val()
     if modules != None:
-      modulesId = list(modules.keys())
-      moduleName = 'Módulo sem nome'
       context = {
-        'modulesId': modulesId,
-        'moduleName': moduleName,
+        'modules': modules.items(),
       }
       return render(request, 'aquasite/pages/dashboard.html', context)
     else:
       return render(request, 'aquasite/pages/dashboard.html')
 
   def module(request, moduleId):
-    moduleName = database.child('UsersData').child(userId).child('modules').child(moduleId).child('moduleName').get().val()
+    moduleName = database.child('UsersData').child(userId).child('modules').child(moduleId).child('name').get().val()
     if moduleName == None:
-      database.child('UsersData').child(userId).child('modules').child(moduleId).update({'moduleName': request.POST.get('module-name')})
-      moduleName = database.child('UsersData').child(userId).child('modules').child(moduleId).child('moduleName').get().val()
+      database.child('UsersData').child(userId).child('modules').child(moduleId).update({'name': request.POST.get('module-name')})
+      moduleName = database.child('UsersData').child(userId).child('modules').child(moduleId).child('name').get().val()
+
     context = {
       'moduleId': moduleId,
       'moduleName': moduleName,
-      'info': f'Aqui ficarão as informações do módulo: {moduleName}',
     }
     return render(request, 'aquasite/pages/module.html', context)
 
@@ -133,3 +130,4 @@ class userDashboard:
       'modules': modules,
     }
     return render(request, 'aquasite/pages/account.html', context)
+  

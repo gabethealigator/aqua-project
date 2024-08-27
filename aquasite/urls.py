@@ -12,6 +12,6 @@ urlpatterns = [
   path('register/', views.userAuth.userRegister.register, name='register'),
 
   path('dashboard/', views.userDashboard.dashboard, name='dashboard'),
-  path('dashboard/<int:moduleId>/', views.userDashboard.module, name='module'),
+  path('dashboard/model/<int:moduleId>/', views.userDashboard.module, name='module'),
   path('dashboard/account/', views.userDashboard.account, name='account'),
 ]

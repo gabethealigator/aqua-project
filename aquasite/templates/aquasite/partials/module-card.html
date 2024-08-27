@@ -1,0 +1,38 @@
+{% if module.name != None %}
+  <a href="{% url 'module' moduleId=module_id %}">
+    <button type="button" class="btn p-4 border" data-bs-toggle="modal" data-bs-target="#module-{{module_id}}-name-modal" style="width: 261px; height: 261px;">
+      <div class="d-flex flex-column align-items-center w-100">
+        <p>{{module.name}}</p>
+        <p class="m-0"><small>ID: {{module_id}}</small></p>
+      </div>
+    </button>
+  </a>
+{% elif module.name == None %}
+<button type="button" class="btn p-4 border" data-bs-toggle="modal" data-bs-target="#module-{{module_id}}-name-modal" style="width: 261px; height: 261px;">
+  <div class="d-flex flex-column align-items-center w-100">
+    <p class="m-0"><small>ID: {{module_id}}</small></p>
+  </div>
+</button>
+
+  <div class="modal fade" id="module-{{module_id}}-name-modal" tabindex="-1" aria-labelledby="module-name-modal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5">Nome do módulo</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form action="{% url 'module' moduleId=module_id %}" method="post">
+          {% csrf_token %}
+          <div class="modal-body">
+            <label for="module-name" class="form-label">Adicione um nome para o módulo:</label>
+            <input type="text" class="form-control" id="module-name" name="module-name">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+            <input type="submit" class="btn btn-primary" value="Enviar">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endif %}
