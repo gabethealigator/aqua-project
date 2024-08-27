@@ -105,10 +105,15 @@ class userDashboard:
       return render(request, 'aquasite/pages/dashboard.html')
 
   def module(request, moduleId):
-    moduleName = database.child('UsersData').child(userId).child('modules').child(moduleId).child('name').get().val()
-    if moduleName == None:
-      database.child('UsersData').child(userId).child('modules').child(moduleId).update({'name': request.POST.get('module-name')})
-      moduleName = database.child('UsersData').child(userId).child('modules').child(moduleId).child('name').get().val()
+    def module():
+      return database.child('UsersData').child(userId).child('modules').child(moduleId)
+
+    moduleData = module().get().val()
+    if 'name' in moduleData:
+      moduleName = moduleData['name']
+    elif 'name' not in moduleData:
+      moduleName = request.POST.get('module-name')
+      module().update({'name': moduleName})
 
     context = {
       'moduleId': moduleId,
