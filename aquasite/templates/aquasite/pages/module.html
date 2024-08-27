@@ -4,15 +4,36 @@
 
 {% block body-content %}
 {% include 'aquasite/partials/dashboard-navbar.html' %}
+  <section id="module" data-module-id="{{moduleId}}">
+    <div class="container mt-5">
+      <nav class="pt-4" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Painel</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Módulo</li>
+        </ol>
+      </nav>
+  
+      <p>Nome do módulo: {{moduleName}}</p>
 
-  <div class="container mt-5">
-    <nav class="pt-4" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Painel</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Módulo</li>
-      </ol>
-    </nav>
+      <div class="pt-4">
+        Testando o websocket: <span id="ws-data"></span>
+      </div>
+    </div>
+  </section>
 
-    <p>Nome do módulo: {{moduleName}}</p>
-  </div>
+  <script>
+    const moduleId = document.getElementById('module').getAttribute('data-module-id')
+    let moduleSocket = new WebSocket(
+      'ws://' +
+      window.location.host +
+      '/dashboard/module/' +
+      moduleId +
+      '/'
+    )
+
+    moduleSocket.onmessage = (e) => {
+      const data = JSON.parse(e.data)
+      document.getElementById('ws-data').innerText = data.value
+    }
+  </script>
 {% endblock %}
