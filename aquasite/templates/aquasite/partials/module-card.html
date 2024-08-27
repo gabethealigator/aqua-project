@@ -21,7 +21,7 @@
           <h1 class="modal-title fs-5">Nome do módulo</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <form action="{% url 'module' moduleId=module_id %}" method="post">
+        <form id="module-name-form" action="{% url 'module' moduleId=module_id %}" method="post">
           {% csrf_token %}
           <div class="modal-body">
             <label for="module-name" class="form-label">Adicione um nome para o módulo:</label>
@@ -29,10 +29,21 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-            <input type="submit" class="btn btn-primary" value="Enviar">
+            <button type="submit" class="btn btn-primary">Enviar</button>
           </div>
         </form>
       </div>
     </div>
   </div>
+
+  <script>
+    const form = document.getElementById('module-name-form')
+    const input = document.getElementById('module-name')
+
+    form.addEventListener('submit', (event) => {
+      if (input.value.trim() === '') {
+        event.preventDefault()
+      }
+    })
+  </script>
 {% endif %}
