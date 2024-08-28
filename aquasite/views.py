@@ -8,6 +8,7 @@ from decouple import config
 
 import pyrebase, random, string
 
+
 firebaseConfig = {
   'apiKey': config('FIREBASE_API_KEY'),
   'authDomain': config('FIREBASE_AUTH_DOMAIN'),
