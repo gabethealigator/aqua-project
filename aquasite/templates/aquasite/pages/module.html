@@ -15,8 +15,14 @@
   
       <p>Nome do módulo: {{moduleName}}</p>
 
-      <div>
-        <canvas id="myChart" width="100px" height="25px"></canvas>
+      <div class="row">
+        <div class="chart-container col" style="width: 30vw;">
+          <canvas id="temperature-chart"></canvas>
+        </div>
+
+        <div class="chart-container col" style="width: 30vw;">
+          <canvas id="level-chart"></canvas>
+        </div>
       </div>
     </div>
   </section>
@@ -24,14 +30,36 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <script>
-    const ctx = document.getElementById('myChart');
-    let chartData = {
+    const temperatureChartCanvas = document.getElementById('temperature-chart');
+    let temperatureChartData = {
       type: 'line',
       data: {
-        labels: ['', '', '', '', '', ''],
+        labels: ['', '', '', '', ''],
         datasets: [{
-          label: '',
-          data: [12, 19, 3, 5, 2, 3],
+          label: 'Temperatura da água',
+          data: [20, 20, 20, 20, 20],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            min: 0,
+            max: 100,
+          }
+        },
+      }
+    }
+    let temperatureChart = new Chart(temperatureChartCanvas, temperatureChartData)
+
+    const levelChartCanvas = document.getElementById('level-chart');
+    let levelChartData = {
+      type: 'bar',
+      data: {
+        labels: ['', '', '', '', ''],
+        datasets: [{
+          label: 'Nível da água',
+          data: [20, 20, 20, 20, 20],
           borderWidth: 1
         }]
       },
@@ -42,14 +70,10 @@
             max: 50,
           }
         },
-        plugins: {
-          legend: {
-              display: false
-          }
-        }
       }
     }
-    let moduleChart = new Chart(ctx, chartData)
+    let levelChart = new Chart(levelChartCanvas, levelChartData)
+
 
     const moduleId = document.getElementById('module').getAttribute('data-module-id')
     let moduleSocket = new WebSocket(
@@ -62,11 +86,18 @@
     moduleSocket.onmessage = (e) => {
       const djangoData = JSON.parse(e.data)
       console.log(djangoData)
-      let newChartData = chartData.data.datasets[0].data
-      newChartData.shift()
-      newChartData.push(djangoData.temperature)
-      chartData.data.datasets[0].data = newChartData
-      moduleChart.update()
+
+      let newTemperatureChartData = temperatureChartData.data.datasets[0].data
+      newTemperatureChartData.shift()
+      newTemperatureChartData.push(djangoData.temperature)
+      temperatureChartData.data.datasets[0].data = newTemperatureChartData
+      temperatureChart.update()
+
+      let newLevelChartData = levelChartData.data.datasets[0].data
+      newLevelChartData.shift()
+      newLevelChartData.push(djangoData.level)
+      levelChartData.data.datasets[0].data = newLevelChartData
+      levelChart.update()
     }
   </script>
 {% endblock %}

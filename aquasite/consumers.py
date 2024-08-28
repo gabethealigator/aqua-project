@@ -13,9 +13,13 @@ class ModuleConsumer(AsyncWebsocketConsumer):
 
     loop = True
     while loop == True:
-      module = database.child('UsersData').child(userId).child('modules').child(self.moduleId).get().val()
+      module = database.child('UsersData').child(userId).child('modules').child(self.moduleId).child('statistics').get().val()
       temperature = module['TEMP']
-      await self.send(json.dumps({'temperature': temperature}))
+      level = module['LEVEL']
+      await self.send(json.dumps({
+          'temperature': temperature,
+          'level': level,
+        }))
       await sleep(5)
 
   async def disconnect(self, code):
