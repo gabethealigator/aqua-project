@@ -1,5 +1,4 @@
 import json
-from random import randint
 from asyncio import sleep
 
 from channels.generic.websocket import AsyncWebsocketConsumer

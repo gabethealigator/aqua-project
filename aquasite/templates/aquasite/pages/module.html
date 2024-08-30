@@ -6,16 +6,55 @@
 {% include 'aquasite/partials/dashboard-navbar.html' %}
   <section id="module" data-module-id="{{moduleId}}">
     <div class="container mt-5">
-      <nav class="pt-4" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Painel</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Módulo</li>
-        </ol>
-      </nav>
-  
-      <p>Nome do módulo: {{moduleName}}</p>
+      <div class="breadcramp">
+        <nav class="pt-4" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Painel</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Módulo</li>
+          </ol>
+        </nav>
+      </div>
 
-      <div class="row">
+      <section id="overview">
+        <div id="overview-title" class="d-flex align-items-center gap-3 mb-4">
+          <i class="fa-solid fa-chart-simple" style="font-size: 36px; color: #1a5fb4;"></i>
+          <h1 class="display-5"><strong>visão geral da qualidade da água</strong></h1>
+          <i class="fa-solid fa-circle" style="font-size: 8px;"></i>
+          <h2 class="display-6 m-0">{{moduleName}}</h2>
+        </div>
+
+        <div id="overview-layout" class="d-flex flex-column gap-4">
+          <div class="row">
+            <div class="col-5">
+              <div id="overview-ph" class="d-flex gap-2">
+                {% for phBar in phBars %}
+                  {% include 'aquasite/partials/ph-bar.html' %}
+                {% endfor %}
+              </div>
+            </div>
+  
+            <div class="col-7">
+              <div class="card">
+                <div class="card-body">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi quam ipsum velit deserunt nesciunt fugiat at ratione iste vitae hic eum magnam facere temporibus sint exercitationem beatae, a, soluta necessitatibus.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <div class="card">
+                <div class="card-body">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi quam ipsum velit deserunt nesciunt fugiat at ratione iste vitae hic eum magnam facere temporibus sint exercitationem beatae, a, soluta necessitatibus.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- <div class="row">
         <div class="chart-container col" style="width: 30vw;">
           <canvas id="temperature-chart"></canvas>
         </div>
@@ -23,7 +62,7 @@
         <div class="chart-container col" style="width: 30vw;">
           <canvas id="level-chart"></canvas>
         </div>
-      </div>
+      </div> -->
     </div>
   </section>
 
