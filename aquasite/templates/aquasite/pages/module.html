@@ -26,7 +26,16 @@
         <div id="overview-layout" class="d-flex flex-column gap-4">
           <div class="row">
             <div class="col-5">
-              <div id="overview-ph" class="d-flex gap-2">
+              <h5 class="text-center w-100" style="letter-spacing: 24px;">Nível de PH</h5>
+              <style>
+                .ph-bar {
+                  opacity: 25%;
+                }
+                .module-ph-level {
+                  opacity: 100%;
+                }
+              </style>
+              <div id="overview-ph-scale" class="d-flex gap-2">
                 {% for phBar in phBars %}
                   {% include 'aquasite/partials/ph-bar.html' %}
                 {% endfor %}
@@ -54,7 +63,7 @@
         </div>
       </section>
 
-      <!-- <div class="row">
+      <div class="row mt-5">
         <div class="chart-container col" style="width: 30vw;">
           <canvas id="temperature-chart"></canvas>
         </div>
@@ -62,13 +71,13 @@
         <div class="chart-container col" style="width: 30vw;">
           <canvas id="level-chart"></canvas>
         </div>
-      </div> -->
+      </div>
     </div>
   </section>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-  <script>
+  <script defer>
     const temperatureChartCanvas = document.getElementById('temperature-chart');
     let temperatureChartData = {
       type: 'line',
@@ -125,6 +134,20 @@
     moduleSocket.onmessage = (e) => {
       const djangoData = JSON.parse(e.data)
       console.log(djangoData)
+
+      let ph = Math.round(djangoData.ph)
+      const phScale = document.getElementById('overview-ph-scale').children
+      for (let i = 0; i < phScale.length; i++) {
+        if (phScale[i].id == 'ph-level-' + ph) {
+          for (let j = 0; j < phScale.length; j++) {
+            phScale[j].children[0].classList.remove('module-ph-level')
+            phScale[j].children[1].style.fontWeight = 'normal'
+          }
+          console.log(phScale[i].children)
+          phScale[i].children[0].classList.add('module-ph-level')
+          phScale[i].children[1].style.fontWeight = 'bold'
+        }
+      }
 
       let newTemperatureChartData = temperatureChartData.data.datasets[0].data
       newTemperatureChartData.shift()
