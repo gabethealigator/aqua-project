@@ -4,8 +4,8 @@
 
 {% block body-content %}
 {% include 'aquasite/partials/dashboard-navbar.html' %}
-  <section id="module" data-module-id="{{moduleId}}">
-    <div class="container mt-5">
+  <div class="container mt-5">
+    <div id="module" data-module-id="{{moduleId}}">
       <div class="breadcramp">
         <nav class="pt-4" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
           <ol class="breadcrumb">
@@ -14,7 +14,7 @@
           </ol>
         </nav>
       </div>
-
+  
       <section id="overview">
         <div id="overview-title" class="d-flex align-items-center gap-3 mb-4">
           <i class="fa-solid fa-chart-simple" style="font-size: 36px; color: #62a0ea;"></i>
@@ -22,12 +22,12 @@
           <i class="fa-solid fa-circle" style="font-size: 8px;"></i>
           <h2 class="display-6 m-0">{{moduleName}}</h2>
         </div>
-
-        <div id="overview-content" class="d-flex flex-column gap-4">
-          <div class="row">
-            <div class="col-5">
+  
+        <div id="overview-content">
+          <div class="d-flex gap-5">
+            <div style="width: 40%;">
               <div id="overview-ph-scale">
-                <h5 class="text-center w-100" style="letter-spacing: 16px;">Nível de PH</h5>
+                <h5 class="text-center mb-4 w-100" style="letter-spacing: 16px;">Nível de PH</h5>
                 <style>
                   .ph-bar { opacity: 25%; }
                   .module-ph-level { opacity: 100%; }
@@ -38,12 +38,12 @@
                   {% endfor %}
                 </div>
               </div>
-
-              <div id="overview-temperature" class="mt-5" style="height: 300px;">
+  
+              <div id="overview-temperature" class="mt-5">
                 <div class="d-flex justify-content-end gap-5 h-100">
                   <div id="temperature-info" class="d-flex flex-column text-end">
                     <h5 class="text-center m-0 w-100" style="letter-spacing: 16px;">Temperatura</h5>
-
+  
                     <div class="d-flex flex-column justify-content-center align-items-center h-100">
                       <div class="d-flex flex-column justify-content-center align-items-center gap-2">
                         <h1><span id="temperature"></span> °C</h1>
@@ -51,8 +51,8 @@
                       </div>
                     </div>
                   </div>
-
-                  <div id="thermometer">
+  
+                  <div id="thermometer" style="height: 300px;">
                     <div class="d-flex justify-content-center align-items-center border border-2 rounded-pill p-1 w-100 h-100" style="min-width: 48px;">
                       <div class="d-flex align-items-end border rounded-pill p-1 w-100 h-100">
                         <div id="thermometer-level" class="rounded-pill w-100" style=" background-color: tomato;"></div>
@@ -61,40 +61,53 @@
                   </div>
                 </div>
               </div>
-            </div>
-  
-            <div class="col-7">
-              <div class="card">
-                <div class="card-body">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi quam ipsum velit deserunt nesciunt fugiat at ratione iste vitae hic eum magnam facere temporibus sint exercitationem beatae, a, soluta necessitatibus.</p>
+
+              <div id="overview-turbidity" class="mt-5">
+                <h5 class="text-center mb-4 w-100" style="letter-spacing: 16px;">Turbidez</h5>
+
+                <div class="card">
+                  <div class="card-body">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque, maxime natus! Provident quasi laborum modi reprehenderit enim doloribus harum nostrum maiores quos. Aut voluptatem optio dolor animi, cumque assumenda accusamus!</p>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-
-          <div class="row">
-            <div class="col">
-              <div class="card">
-                <div class="card-body">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi quam ipsum velit deserunt nesciunt fugiat at ratione iste vitae hic eum magnam facere temporibus sint exercitationem beatae, a, soluta necessitatibus.</p>
+  
+            <div style="width: 60%;">
+              <div class="d-flex flex-column h-100">
+                <div id="overview-geral-quality" class="h-100"></div>
+                
+                <div id="overview-water-level" class="mt-5">
+                  <h5 class="text-center mb-4 w-100" style="letter-spacing: 16px;">Nível da água</h5>
+  
+                  <div class="position-relative" style="height: 150px;">
+                    <div class="border d-flex align-items-end rounded p-2 w-100 h-100">
+                      <div id="water-background" class="rounded opacity-50 w-100" style="background-color: skyblue;"></div>
+                      <div>
+                        <h1 class="position-absolute top-50 start-50 translate-middle m-0"><span id="water-percentage"></span>%</h1>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </section>
-
-      <div class="row mt-5">
-        <div class="chart-container col" style="width: 30vw;">
-          <canvas id="temperature-chart"></canvas>
+  
+      <section id="charts">
+        <div class="row mt-5">
+          <div class="chart-container col" style="width: 30vw;">
+            <canvas id="temperature-chart"></canvas>
+          </div>
+    
+          <div class="chart-container col" style="width: 30vw;">
+            <canvas id="level-chart"></canvas>
+          </div>
         </div>
-
-        <div class="chart-container col" style="width: 30vw;">
-          <canvas id="level-chart"></canvas>
-        </div>
-      </div>
+      </section>
     </div>
-  </section>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 

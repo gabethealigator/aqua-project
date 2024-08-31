@@ -13,13 +13,13 @@ class ModuleConsumer(AsyncWebsocketConsumer):
     loop = True
     while loop == True:
       module = database.child('UsersData').child(userId).child('modules').child(self.moduleId).child('statistics').get().val()
+      ph = module['PH']
       temperature = module['TEMP']
       level = module['LEVEL']
-      ph = module['PH']
       await self.send(json.dumps({
+          'ph': ph,
           'temperature': temperature,
           'level': level,
-          'ph': ph,
         }))
       await sleep(5)
 
