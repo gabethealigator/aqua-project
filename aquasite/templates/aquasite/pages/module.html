@@ -27,7 +27,7 @@
           <div class="row">
             <div class="col-5">
               <div id="overview-ph-scale">
-                <h5 class="text-center w-100" style="letter-spacing: 24px;">Nível de PH</h5>
+                <h5 class="text-center w-100" style="letter-spacing: 16px;">Nível de PH</h5>
                 <style>
                   .ph-bar { opacity: 25%; }
                   .module-ph-level { opacity: 100%; }
@@ -39,8 +39,27 @@
                 </div>
               </div>
 
-              <div id="overview-temperature">
+              <div id="overview-temperature" class="mt-5" style="height: 300px;">
+                <div class="d-flex justify-content-end gap-5 h-100">
+                  <div id="temperature-info" class="d-flex flex-column text-end">
+                    <h5 class="text-center m-0 w-100" style="letter-spacing: 16px;">Temperatura</h5>
 
+                    <div class="d-flex flex-column justify-content-center align-items-center h-100">
+                      <div class="d-flex flex-column justify-content-center align-items-center gap-2">
+                        <h1><span id="temperature"></span> °C</h1>
+                        <h4><span id="temperature-condition">Ideal</span></h4>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div id="thermometer">
+                    <div class="d-flex justify-content-center align-items-center border border-2 rounded-pill p-1 w-100 h-100" style="min-width: 48px;">
+                      <div class="d-flex align-items-end border rounded-pill p-1 w-100 h-100">
+                        <div id="thermometer-level" class="rounded-pill w-100" style=" background-color: tomato;"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
   
@@ -79,5 +98,5 @@
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-  <script type="module" src="../../../static/aquasite/module/js/module-ws.js" defer></script>
+  <script type="module" src="../../../static/aquasite/module/js/module-ws.js"></script>
 {% endblock body-content %}

@@ -1,5 +1,6 @@
 import * as charts from './charts.js'
 import * as PHScale from './ph-scale.js'
+import * as temperature from './temperature.js'
 
 const moduleId = document.getElementById('module').getAttribute('data-module-id')
 let moduleSocket = new WebSocket(
@@ -14,6 +15,7 @@ moduleSocket.onmessage = (e) => {
   console.log(djangoData)
 
   PHScale.updateModulePHLevel(djangoData)
+  temperature.updateModuleTemperatureLevelAndCondition(djangoData)
   charts.updateTemperatureChartData(djangoData)
   charts.updateLevelChartData(djangoData)
 }
