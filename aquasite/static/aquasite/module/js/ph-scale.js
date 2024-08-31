@@ -1,6 +1,6 @@
 export function updateModulePHLevel(djangoData) {
   let modulePH = Math.round(djangoData.ph)
-  const phScale = document.getElementById('overview-ph-scale').children
+  const phScale = document.getElementById('ph-scale').children
 
   for (let i = 0; i < phScale.length; i++) {
     if (phScale[i].id == 'ph-level-' + modulePH) {

@@ -17,28 +17,30 @@
 
       <section id="overview">
         <div id="overview-title" class="d-flex align-items-center gap-3 mb-4">
-          <i class="fa-solid fa-chart-simple" style="font-size: 36px; color: #1a5fb4;"></i>
+          <i class="fa-solid fa-chart-simple" style="font-size: 36px; color: #62a0ea;"></i>
           <h1 class="display-5"><strong>visão geral da qualidade da água</strong></h1>
           <i class="fa-solid fa-circle" style="font-size: 8px;"></i>
           <h2 class="display-6 m-0">{{moduleName}}</h2>
         </div>
 
-        <div id="overview-layout" class="d-flex flex-column gap-4">
+        <div id="overview-content" class="d-flex flex-column gap-4">
           <div class="row">
             <div class="col-5">
-              <h5 class="text-center w-100" style="letter-spacing: 24px;">Nível de PH</h5>
-              <style>
-                .ph-bar {
-                  opacity: 25%;
-                }
-                .module-ph-level {
-                  opacity: 100%;
-                }
-              </style>
-              <div id="overview-ph-scale" class="d-flex gap-2">
-                {% for phBar in phBars %}
-                  {% include 'aquasite/partials/ph-bar.html' %}
-                {% endfor %}
+              <div id="overview-ph-scale">
+                <h5 class="text-center w-100" style="letter-spacing: 24px;">Nível de PH</h5>
+                <style>
+                  .ph-bar { opacity: 25%; }
+                  .module-ph-level { opacity: 100%; }
+                </style>
+                <div id="ph-scale" class="d-flex gap-2">
+                  {% for phLevel in phLevels %}
+                    {% include 'aquasite/partials/ph-level.html' %}
+                  {% endfor %}
+                </div>
+              </div>
+
+              <div id="overview-temperature">
+
               </div>
             </div>
   

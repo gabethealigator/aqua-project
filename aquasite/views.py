@@ -116,32 +116,32 @@ class userDashboard:
       moduleName = request.POST.get('module-name')
       module().update({'name': moduleName})
 
-    class phBar:
+    class phLevel:
       def __init__(self, color, number):
         self.color = color
         self.number = number
-    phBars = [
-      phBar('#FF0000', 0),
-      phBar('#FF4C00', 1),
-      phBar('#FF8000', 2),
-      phBar('#FFB84C', 3),
-      phBar('#FFD699', 4),
-      phBar('#FFFF66', 5),
-      phBar('#FFFF00', 6),
-      phBar('#D4FF00', 7),
-      phBar('#A0FF00', 8),
-      phBar('#66FF00', 9),
-      phBar('#33FF66', 10),
-      phBar('#00FF99', 11),
-      phBar('#00FFFF', 12),
-      phBar('#0099FF', 13),
-      phBar('#0033FF', 14)
+    phLevels = [
+      phLevel('#FF0000', 0),
+      phLevel('#FF4C00', 1),
+      phLevel('#FF8000', 2),
+      phLevel('#FFB84C', 3),
+      phLevel('#FFD699', 4),
+      phLevel('#FFFF66', 5),
+      phLevel('#FFFF00', 6),
+      phLevel('#D4FF00', 7),
+      phLevel('#A0FF00', 8),
+      phLevel('#66FF00', 9),
+      phLevel('#33FF66', 10),
+      phLevel('#00FF99', 11),
+      phLevel('#00FFFF', 12),
+      phLevel('#0099FF', 13),
+      phLevel('#0033FF', 14)
     ]
 
     context = {
       'moduleId': moduleId,
       'moduleName': moduleName, 
-      'phBars': phBars,
+      'phLevels': phLevels,
     }
     return render(request, 'aquasite/pages/module.html', context)
 
