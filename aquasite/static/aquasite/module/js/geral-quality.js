@@ -4,7 +4,7 @@ export function updateWaterGeralQuality(djangoData) {
   let turbidity = djangoData.turbidity
   let waterLevel = djangoData.level
 
-  let progress = 64
+  let progress = 100
 
 
 

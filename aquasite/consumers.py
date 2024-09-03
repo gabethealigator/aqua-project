@@ -22,9 +22,7 @@ class ModuleConsumer(AsyncWebsocketConsumer):
           'turbidity': 0,
           'level': level,
         }))
-      await sleep(5)
+      await sleep(2.5)
 
   async def disconnect(self, code):
     pass
-
-  

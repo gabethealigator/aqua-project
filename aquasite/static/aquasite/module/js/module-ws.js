@@ -20,6 +20,12 @@ moduleSocket.onmessage = (e) => {
   temperature.updateModuleTemperatureLevelAndCondition(djangoData)
   waterLevel.updateWaterLevel(djangoData)
   geralQuality.updateWaterGeralQuality(djangoData)
+  charts.updatePHChartData(djangoData)
+  charts.updateTurbidityChartData(djangoData)
   charts.updateTemperatureChartData(djangoData)
   charts.updateLevelChartData(djangoData)
+
+  const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+  const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
 }
