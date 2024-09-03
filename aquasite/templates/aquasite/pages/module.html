@@ -1,4 +1,4 @@
-{% extends 'aquasite/partials/base.html' %}
+{% extends 'aquasite/partials/dashboard-base.html' %}
 
 {% block title %}AQUA | Módulo - {{moduleName}}{% endblock %}
 
@@ -7,18 +7,8 @@
 {% endblock %}
 
 {% block body-content %}
-{% include 'aquasite/partials/dashboard-navbar.html' %}
-  <div class="container mt-5">
-    <div id="module" data-module-id="{{moduleId}}">
-      <div class="breadcramp">
-        <nav class="pt-4" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{% url 'dashboard' %}">Painel</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Módulo</li>
-          </ol>
-        </nav>
-      </div>
-  
+  <div class="container">
+    <div id="module" class="pt-4" data-module-id="{{moduleId}}">
       <section id="overview" class="mb-5">
         <div id="overview-title" class="d-flex align-items-center gap-3 mb-4">
           <i class="fa-solid fa-chart-simple" style="font-size: 36px; color: #62a0ea;"></i>
@@ -142,7 +132,7 @@
 
         <div class="row mt-5">
           <div class="col-6">
-            <div class="chart-container" style="width: 500px;">
+            <div class="chart-container" style="width: 400px;">
               <div class="d-flex justify-content-center align-items-center gap-2 text-center w-100">
                 <h5 class="m-1">PH da água</h5>
                 <i class="fa-solid fa-circle-info fa-sm" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="O pH mede a acidez ou alcalinidade de uma solução, variando de 0 (ácido) a 14 (básico). pH 7 é neutro (como a água)." style="cursor: pointer;"></i>
@@ -150,7 +140,7 @@
               <canvas id="ph-chart"></canvas>
             </div>
 
-            <div class="chart-container" style="width: 500px;">
+            <div class="chart-container" style="width: 400px;">
               <div class="d-flex justify-content-center align-items-center gap-2 text-center w-100">
                 <h5 class="m-1">Temperatura da água</h5>
               </div>
@@ -159,7 +149,7 @@
           </div>
     
           <div class="col-6">
-            <div class="chart-container" style="width: 500px;">
+            <div class="chart-container" style="width: 400px;">
               <div class="d-flex justify-content-center align-items-center gap-2 text-center w-100">
                 <h5 class="m-1">Turbidez da água</h5>
                 <i class="fa-solid fa-circle-info fa-sm" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="A turbidez é a medida de quão turva ou opaca a água está devido a partículas em suspensão. Quanto maior a turbidez, menos clara é a água." style="cursor: pointer;"></i>
@@ -167,7 +157,7 @@
               <canvas id="turbidity-chart"></canvas>
             </div>
 
-            <div class="chart-container" style="width: 500px;">
+            <div class="chart-container" style="width: 400px;">
               <div class="d-flex justify-content-center align-items-center gap-2 text-center w-100">
                 <h5 class="m-1">Nível da água</h5>
               </div>

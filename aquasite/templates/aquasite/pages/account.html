@@ -1,10 +1,10 @@
-{% extends 'aquasite/partials/base.html' %}
+{% extends 'aquasite/partials/dashboard-base.html' %}
 
 {% block title %}AQUA | Conta{% endblock %}
 
 {% block body-content %}
-{% include 'aquasite/partials/dashboard-navbar.html' %}
-  <div class="container mt-5">
+  <section id="account">
+      <div class="container">
     <div class="account-container pt-4">
       <div class="account-content d-flex gap-4">
         <div class="left-content w-50 d-flex flex-column justify-content-center align-items-center gap-4">
@@ -60,4 +60,5 @@
       </div>
     </div>
   </div>
+  </section>
 {% endblock %}

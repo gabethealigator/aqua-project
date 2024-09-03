@@ -145,6 +145,9 @@ class userDashboard:
     }
     return render(request, 'aquasite/pages/module.html', context)
 
+  def reports(request):
+    return render(request, 'aquasite/pages/reports.html')
+
   def account(request):
     name = database.child('UsersData').child(userId).child('name').get().val()
     email = database.child('UsersData').child(userId).child('email').get().val()
