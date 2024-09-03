@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'aquasite',
-    'bootstrap5',
     'fontawesomefree',
     'channels',
 ]

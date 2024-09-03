@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top" style="height: 48px; background-color: #fff;">
+<nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top" style="height: 48px;">
 	<div class="container-fluid">
 		<a class="navbar-brand" href="{% url 'home' %}">AQUA</a>
 		<button
@@ -24,9 +24,14 @@
 					<a class="nav-link" href="{% url 'contact' %}">Contato</a>
 				</li>
 			</ul>
-			<div class="d-flex gap-2">
-				<a href="{% url 'auth' %}"><button class="btn btn-primary" type="submit">Entrar</button></a>
-				<a href="{% url 'auth' %}"><button type="button" class="btn btn-outline-primary">Registrar</button></a>
+			<div class="d-flex justify-content-center align-items-center gap-4">
+					<div class="btn" name="theme-btn" id="switch-light-theme"><i class="fa-regular fa-lightbulb fa-lg"></i></div>
+					<div class="btn" name="theme-btn" id="switch-dark-theme"><i class="fa-regular fa-moon fa-lg"></i></div>
+
+				<div class="d-flex gap-2">
+					<a href="{% url 'auth' %}"><button class="btn btn-primary" type="submit">Entrar</button></a>
+					<a href="{% url 'auth' %}"><button type="button" class="btn btn-outline-primary">Registrar</button></a>
+				</div>
 			</div>
 		</div>
 	</div>
