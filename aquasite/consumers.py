@@ -19,6 +19,7 @@ class ModuleConsumer(AsyncWebsocketConsumer):
       await self.send(json.dumps({
           'ph': ph,
           'temperature': temperature,
+          'turbidity': 0,
           'level': level,
         }))
       await sleep(5)

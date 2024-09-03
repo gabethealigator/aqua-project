@@ -34,10 +34,15 @@ function setLightMode() {
   }
 }
 
+for (let i = 0; i < dashBtns.length; i++) {
+  dashBtns[i].addEventListener('click', ()=> {
+    const bodyBgColor = window.getComputedStyle(document.querySelector('body')).backgroundColor
+    document.documentElement.style.setProperty('--bg-color', bodyBgColor)
+  })
+}
+
 for (let i = 0; i < homeBtns.length; i++) {
   homeBtns[i].addEventListener('click', ()=> {
-    console.log(homeBtns[i].id === 'switch-light-theme')
-
     if (homeBtns[i].id === 'switch-light-theme') {
       setDarkMode()
     } else {

@@ -2,6 +2,10 @@
 
 {% block title %}AQUA | Módulo - {{moduleName}}{% endblock %}
 
+{% block extra-head-content %}
+  <script type="module" src="../../../static/aquasite/module/js/module-ws.js" defer></script>
+{% endblock %}
+
 {% block body-content %}
 {% include 'aquasite/partials/dashboard-navbar.html' %}
   <div class="container mt-5">
@@ -75,7 +79,38 @@
   
             <div style="width: 60%;">
               <div class="d-flex flex-column h-100">
-                <div id="overview-geral-quality" class="h-100"></div>
+                <div id="overview-geral-quality" class="d-flex justify-content-center align-items-center h-100">
+                  <div class="progress-circle position-relative rounded-circle">
+                    <h1><span id="geral-quality-percentage"></span>%</h1>
+                  </div>
+                  <style>
+                    :root {
+                      --progress: 0%;
+                    }
+
+                    .progress-circle {
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                      width: 500px;
+                      height: 500px;
+                      background: conic-gradient(
+                        #4caf50 0%,
+                        #4caf50 var(--progress),
+                        rgba(255, 255, 255, 0) var(--progress),
+                        rgba(255, 255, 255, 0) 100%
+                      );
+                    } .progress-circle::before {
+                      content: '';
+                      position: absolute;
+                      inset: 16px;
+                      background-color: var(--bg-color);
+                      border-radius: 50%;
+                    } .progress-circle h1 {
+                      position: relative;
+                    }
+                  </style>
+                </div>
                 
                 <div id="overview-water-level" class="mt-5">
                   <h5 class="text-center mb-4 w-100" style="letter-spacing: 16px;">Nível da água</h5>
@@ -110,6 +145,4 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-  <script type="module" src="../../../static/aquasite/module/js/module-ws.js"></script>
 {% endblock body-content %}
