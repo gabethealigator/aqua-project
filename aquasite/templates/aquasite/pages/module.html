@@ -7,167 +7,54 @@
 {% endblock %}
 
 {% block body-content %}
-  <div class="container">
-    <div id="module" class="pt-4" data-module-id="{{moduleId}}">
-      <section id="overview" class="mb-5">
-        <div id="overview-title" class="d-flex align-items-center gap-3 mb-4">
-          <i class="fa-solid fa-chart-simple" style="font-size: 36px; color: #62a0ea;"></i>
-          <h1 class="display-5"><strong>Visão Geral da Qualidade da Água</strong></h1>
-          <i class="fa-solid fa-circle" style="font-size: 8px;"></i>
-          <h2 class="display-6 m-0">{{moduleName}}</h2>
+<section id="module" class="w-100 h-100" data-module-id="{{moduleId}}">
+  <div class="container-fluid p-4 h-100 w-100">
+      <div class="d-flex gap-3 w-100 h-100">
+        <div class="d-flex flex-column gap-3 h-100" style="width: 30%;">
+          <div class="border rounded w-100 h-100 p-3">
+            <p>qualidade geral</p>
+          </div>
+          <div class="border rounded w-100 h-100 p-3">
+            <p>problemas</p>
+          </div>
         </div>
-  
-        <div id="overview-content">
-          <div class="d-flex gap-5">
-            <div style="width: 40%;">
-              <div id="overview-ph-scale">
-                <h5 class="text-center mb-4 w-100" style="letter-spacing: 4px;">Nível de PH</h5>
-                <style>
-                  .ph-bar { opacity: 25%; }
-                  .module-ph-level { opacity: 100%; }
-                </style>
-                <div id="ph-scale" class="d-flex gap-2">
-                  {% for phLevel in phLevels %}
-                    {% include 'aquasite/partials/ph-level.html' %}
-                  {% endfor %}
-                </div>
-              </div>
-  
-              <div id="overview-temperature" class="mt-5">
-                <div class="d-flex justify-content-end h-100" style="gap: 96px;">
-                  <div id="temperature-info" class="d-flex flex-column text-end">
-                    <h5 class="text-center m-0 w-100" style="letter-spacing: 4px;">Temperatura</h5>
-  
-                    <div class="d-flex flex-column justify-content-center align-items-center h-100">
-                      <div class="d-flex flex-column justify-content-center align-items-center gap-2">
-                        <h1><span id="temperature"></span> °C</h1>
-                        <h4><span id="temperature-condition">Ideal</span></h4>
-                      </div>
-                    </div>
-                  </div>
-  
-                  <div id="thermometer" style="height: 300px;">
-                    <div class="d-flex justify-content-center align-items-center border border-2 rounded-pill p-1 w-100 h-100" style="min-width: 48px;">
-                      <div class="d-flex align-items-end border rounded-pill p-1 w-100 h-100">
-                        <div id="thermometer-level" class="rounded-pill w-100" style=" background-color: tomato;"></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
 
-              <div id="overview-turbidity" class="mt-5">
-                <h5 class="text-center mb-4 w-100" style="letter-spacing: 4px;">Turbidez</h5>
-
-                <div class="card">
-                  <div class="card-body">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque, maxime natus! Provident quasi laborum modi reprehenderit enim doloribus harum nostrum maiores quos. Aut voluptatem optio dolor animi, cumque assumenda accusamus!</p>
-                  </div>
-                </div>
-              </div>
+        <div class="d-flex flex-column gap-3 h-100" style="width: 60%;">
+          <div class="d-flex gap-3 w-100 h-100">
+            <div class="border rounded w-100 h-100 p-3">
+              <p>gráfico</p>
             </div>
-  
-            <div style="width: 60%;">
-              <div class="d-flex flex-column h-100">
-                <div id="overview-geral-quality" class="d-flex flex-column justify-content-center align-items-center h-100">
-                  <div class="progress-circle position-relative rounded-circle">
-                    <h1 class="display-1"><span id="geral-quality-percentage"></span>%</h1>
-                    <h2 class="display-6">Qualidade geral</h2>
-                    
-                  </div>
-                  <style>
-                    :root {
-                      --progress: 0%;
-                    }
+            <div class="border rounded w-100 h-100 p-3">
+              <p>turbidez</p>
+            </div>
+          </div>
 
-                    .progress-circle {
-                      display: flex;
-                      flex-direction: column;
-                      justify-content: center;
-                      align-items: center;
-                      width: 500px;
-                      height: 500px;
-                      background: conic-gradient(
-                        #4caf50 0%,
-                        #4caf50 var(--progress),
-                        rgba(255, 255, 255, 0) var(--progress),
-                        rgba(255, 255, 255, 0) 100%
-                      );
-                    } .progress-circle::before {
-                      content: '';
-                      position: absolute;
-                      inset: 16px;
-                      background-color: var(--bg-color);
-                      border-radius: 50%;
-                    } .progress-circle h1,
-                      .progress-circle h2 {
-                      position: relative;
-                    }
-                  </style>
-                </div>
-                
-                <div id="overview-water-level" class="mt-5">
-                  <h5 class="text-center mb-4 w-100" style="letter-spacing: 4px;">Nível da água</h5>
-  
-                  <div class="position-relative" style="height: 150px;">
-                    <div class="border d-flex align-items-end rounded p-2 w-100 h-100">
-                      <div id="water-background" class="rounded opacity-50 w-100" style="background-color: skyblue;"></div>
-                      <div>
-                        <h1 class="position-absolute top-50 start-50 translate-middle m-0"><span id="water-percentage"></span>%</h1>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+          <div class="d-flex gap-3 w-100 h-100">
+            <div class="border rounded w-100 h-100 p-3">
+              <p>gráfico</p>
+            </div>
+            <div class="border rounded w-100 h-100 p-3">
+              <p>nível da água</p>
+            </div>
+          </div>
+
+          <div class="d-flex flex-column gap-3 w-100 h-100">
+            <div class="border rounded w-100 h-100 p-3">
+              <p>escala de ph</p>
             </div>
           </div>
         </div>
-      </section>
-  
-      <section id="charts">
-        <div id="charts-title" class="d-flex align-items-center gap-3 mb-4">
-          <i class="fa-solid fa-chart-pie" style="font-size: 36px; color: #62a0ea;"></i>
-          <h1 class="display-5"><strong>Gráficos em Tempo Real</strong></h1>
-        </div>
 
-        <div class="row mt-5">
-          <div class="col-6">
-            <div class="chart-container" style="width: 400px;">
-              <div class="d-flex justify-content-center align-items-center gap-2 text-center w-100">
-                <h5 class="m-1">PH da água</h5>
-                <i class="fa-solid fa-circle-info fa-sm" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="O pH mede a acidez ou alcalinidade de uma solução, variando de 0 (ácido) a 14 (básico). pH 7 é neutro (como a água)." style="cursor: pointer;"></i>
-              </div>
-              <canvas id="ph-chart"></canvas>
-            </div>
-
-            <div class="chart-container" style="width: 400px;">
-              <div class="d-flex justify-content-center align-items-center gap-2 text-center w-100">
-                <h5 class="m-1">Temperatura da água</h5>
-              </div>
-              <canvas id="temperature-chart"></canvas>
-            </div>
-          </div>
-    
-          <div class="col-6">
-            <div class="chart-container" style="width: 400px;">
-              <div class="d-flex justify-content-center align-items-center gap-2 text-center w-100">
-                <h5 class="m-1">Turbidez da água</h5>
-                <i class="fa-solid fa-circle-info fa-sm" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="A turbidez é a medida de quão turva ou opaca a água está devido a partículas em suspensão. Quanto maior a turbidez, menos clara é a água." style="cursor: pointer;"></i>
-              </div>
-              <canvas id="turbidity-chart"></canvas>
-            </div>
-
-            <div class="chart-container" style="width: 400px;">
-              <div class="d-flex justify-content-center align-items-center gap-2 text-center w-100">
-                <h5 class="m-1">Nível da água</h5>
-              </div>
-              <canvas id="level-chart"></canvas>
+        <div class="d-flex flex-column gap-3 h-100" style="width: 10%;">
+          <div class="d-flex flex-column gap-3 w-100 h-100">
+            <div class="border rounded-pill w-100 h-100 p-3">
+              <p>temperatura</p>
             </div>
           </div>
         </div>
-      </section>
-    </div>
+      </div>
   </div>
+</section>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 {% endblock body-content %}

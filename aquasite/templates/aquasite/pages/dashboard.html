@@ -4,13 +4,11 @@
 
 {% block body-content %}
   <section id="models">
-    <div class="container">
-      <div class="models-container pt-4">
-        <div class="models-content d-flex flex-wrap align-items-center gap-4">
-          {% for module_id, module in modules %}
-            {% include 'aquasite/partials/module-card.html' %}
-          {% endfor %}
-        </div>      
+    <div class="container p-4">
+      <div class="d-flex flex-wrap align-items-center gap-4">
+        {% for module_id, module in modules %}
+          {% include 'aquasite/partials/module-card.html' %}
+        {% endfor %}
       </div>
     </div>
   </section>
