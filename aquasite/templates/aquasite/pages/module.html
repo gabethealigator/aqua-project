@@ -29,14 +29,14 @@
                   text-align: center;
                   background: conic-gradient(
                     #4caf50 0%,
-                    #4caf50 100%,
-                    rgba(255, 255, 255, 0) 100%,
-                    rgba(255, 255, 255, 0) 100%
+                    #4caf50 var(--progress),
+                    rgba(255, 255, 255, 0) 0%,
+                    rgba(255, 255, 255, 0) var(--progress)
                   );
                 } .progress-circle::before {
                   content: '';
                   position: absolute;
-                  inset: 8px;
+                  inset: 12px;
                   background-color: var(--bg-color);
                   border-radius: 50%;
                 } .progress-circle h1,
