@@ -19,6 +19,9 @@ function setDarkMode() {
     homeBtns[0].style.display = 'none'
     homeBtns[1].style.display = 'block'
   }
+
+  const bodyBgColor = window.getComputedStyle(document.querySelector('body')).backgroundColor
+  document.documentElement.style.setProperty('--bg-color', bodyBgColor)
 }
 
 function setLightMode() {
@@ -32,13 +35,9 @@ function setLightMode() {
     homeBtns[0].style.display = 'block'
     homeBtns[1].style.display = 'none'
   }
-}
 
-for (let i = 0; i < dashBtns.length; i++) {
-  dashBtns[i].addEventListener('click', ()=> {
-    const bodyBgColor = window.getComputedStyle(document.querySelector('body')).backgroundColor
-    document.documentElement.style.setProperty('--bg-color', bodyBgColor)
-  })
+  const bodyBgColor = window.getComputedStyle(document.querySelector('body')).backgroundColor
+  document.documentElement.style.setProperty('--bg-color', bodyBgColor)
 }
 
 for (let i = 0; i < homeBtns.length; i++) {
