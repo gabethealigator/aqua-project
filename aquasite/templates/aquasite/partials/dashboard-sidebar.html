@@ -1,40 +1,91 @@
 <nav class="h-100 w-100 sticky border-end">
   <div class="container-fluid p-4 h-100">
     <div class="d-flex flex-column justify-content-between h-100">
-      <div>
-        <h1 class="text-center display-6" style="letter-spacing: 4px;">AQUA</h1>
+      <div class="d-flex flex-column justify-content-center align-items-center">
+        <h1 class="text-center display-6 mb-4" style="letter-spacing: 4px;">AQUA</h1>
 
         <div class="sidebar-nav">
           <ul>
-            <li class="nav-item">
-              <a href="{% url 'dashboard' %}">Painel</a>
+            <li class="side-nav-item p-2 active">
+              <a href="{% url 'dashboard' %}"><i class="fa-solid fa-gauge fa-xl"></i> Painel</a>
             </li>
-            <li class="nav-item">
-              <a href="{% url 'reports' %}">Relatórios</a>
+            <li class="side-nav-item p-2">
+              <a href="{% url 'reports' %}"><i class="fa-solid fa-file-invoice fa-xl""></i> Relatórios</a>
             </li>
-            <li class="nav-item">
-              <a href="{% url 'account' %}">Conta</a>
+            <li class="side-nav-item p-2">
+              <a href="{% url 'account' %}"><i class="fa-solid fa-user fa-xl""></i> Conta</a>
             </li>
           </ul>
         </div>
-
-        <div class="mt-3">
-          <p class="mb-2">Temas:</p>
-          <div class="d-flex gap-2">
-            <input type="radio" class="btn-check" name="options-outlined" id="primary-outlined" autocomplete="off" checked>
-            <label class="btn btn-outline-primary" for="primary-outlined" onclick="setLightMode()">Claro</label>
-    
-            <input type="radio" class="btn-check" name="options-outlined" id="secondary-outlined" autocomplete="off">
-            <label class="btn btn-outline-secondary" for="secondary-outlined" onclick="setDarkMode()">Escuro</label>
-          </div>
-        </div>
       </div>
 
-      <div class="exit-dashboard">
-        <a href="{% url 'auth' %}">
-          <button type="button" class="btn">Sair</button>
-        </a>
+      <div class="d-flex justify-content-between">
+        <div class="exit-dashboard">
+          <a href="{% url 'auth' %}">
+            <button type="button" class="btn">Sair</button>
+          </a>
+        </div>
+  
+        <div> 
+          <div class="btn" name="theme-btn" id="switch-light-theme"><i class="fa-regular fa-lightbulb fa-lg"></i></div>
+          <div class="btn" name="theme-btn" id="switch-dark-theme"><i class="fa-regular fa-moon fa-lg"></i></div>
+        </div>
       </div>
     </div>
   </div>
+
+  <style>
+    .sidebar-nav a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .sidebar-nav ul, 
+    .sidebar-nav li {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .sidebar-nav ul {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .sidebar-nav li {
+      opacity: 50%;
+    }
+
+    .sidebar-nav li i {
+      margin-right: 16px;
+    }
+
+    .sidebar-nav .active {
+      opacity: 100% !important;
+    }
+  </style>
+
+  <script>
+    const options = document.getElementsByClassName('side-nav-item')
+    const path = 'http://' + window.location.host + '/'
+    const url = window.location.href
+    
+    function removeAcitve() {
+      for (let i = 0; i < options.length; i++) {
+        options[i].classList.remove('active')
+      }
+    }
+
+    if (url == path + 'dashboard/') {
+      removeAcitve()
+      options[0].classList.add('active')
+    } else if (url == path + 'dashboard/reports/') {
+      removeAcitve()
+      options[1].classList.add('active')
+    } else if (url == path + 'dashboard/account/') {
+      removeAcitve()
+      options[2].classList.add('active')
+    }
+  </script>
 </nav>
