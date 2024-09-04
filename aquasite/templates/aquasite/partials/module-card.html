@@ -1,6 +1,6 @@
 {% if module.name != None %}
   <a href="{% url 'module' moduleId=module_id %}">
-    <button type="button" class="btn p-4 border" data-bs-toggle="modal" data-bs-target="#module-{{module_id}}-name-modal" style="width: 261px; height: 261px;">
+    <button type="button" class="btn p-4 border" data-bs-toggle="modal" data-bs-target="#module-{{module_id}}-name-modal" style="width: 260px; height: 260px;">
       <div class="d-flex flex-column align-items-center w-100">
         <p>{{module.name}}</p>
         <p class="m-0"><small>ID: {{module_id}}</small></p>
@@ -8,11 +8,11 @@
     </button>
   </a>
 {% elif module.name == None %}
-<button type="button" class="btn p-4 border" data-bs-toggle="modal" data-bs-target="#module-{{module_id}}-name-modal" style="width: 261px; height: 261px;">
-  <div class="d-flex flex-column align-items-center w-100">
-    <p class="m-0"><small>ID: {{module_id}}</small></p>
-  </div>
-</button>
+  <button type="button" class="btn p-4 border" data-bs-toggle="modal" data-bs-target="#module-{{module_id}}-name-modal" style="width: 260px; height: 260px;">
+    <div class="d-flex flex-column align-items-center w-100">
+      <p class="m-0"><small>ID: {{module_id}}</small></p>
+    </div>
+  </button>
 
   <div class="modal fade" id="module-{{module_id}}-name-modal" tabindex="-1" aria-labelledby="module-name-modal" aria-hidden="true">
     <div class="modal-dialog">

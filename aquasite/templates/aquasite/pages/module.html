@@ -8,11 +8,43 @@
 
 {% block body-content %}
 <section id="module" class="w-100 h-100" data-module-id="{{moduleId}}">
-  <div class="container-fluid p-4 h-100 w-100">
+  <div class="container-fluid p-4 w-100 h-100">
       <div class="d-flex gap-3 w-100 h-100">
         <div class="d-flex flex-column gap-3 h-100" style="width: 30%;">
           <div class="border rounded w-100 h-100 p-3">
-            <p>qualidade geral</p>
+            <div id="overview-geral-quality" class="d-flex flex-column justify-content-center align-items-center h-100">
+              <div class="progress-circle position-relative rounded-circle w-100 h-100">
+                <h1><span id="geral-quality-percentage"></span>%</h1>
+                <h2 class="h5">Qualidade geral</h2>
+              </div>
+              <style>
+                :root {
+                  --progress: 0%;
+                }
+                .progress-circle {
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: center;
+                  align-items: center;
+                  text-align: center;
+                  background: conic-gradient(
+                    #4caf50 0%,
+                    #4caf50 100%,
+                    rgba(255, 255, 255, 0) 100%,
+                    rgba(255, 255, 255, 0) 100%
+                  );
+                } .progress-circle::before {
+                  content: '';
+                  position: absolute;
+                  inset: 8px;
+                  background-color: var(--bg-color);
+                  border-radius: 50%;
+                } .progress-circle h1,
+                  .progress-circle h2 {
+                  position: relative;
+                }
+              </style>
+            </div>
           </div>
           <div class="border rounded w-100 h-100 p-3">
             <p>problemas</p>
@@ -22,7 +54,9 @@
         <div class="d-flex flex-column gap-3 h-100" style="width: 60%;">
           <div class="d-flex gap-3 w-100 h-100">
             <div class="border rounded w-100 h-100 p-3">
-              <p>gráfico</p>
+              <div class="chart-container" style="width: 100%;">
+                <canvas id="turbidity-chart"></canvas>
+              </div>
             </div>
             <div class="border rounded w-100 h-100 p-3">
               <p>turbidez</p>
@@ -31,16 +65,37 @@
 
           <div class="d-flex gap-3 w-100 h-100">
             <div class="border rounded w-100 h-100 p-3">
-              <p>gráfico</p>
+              <div class="chart-container" style="width: 100%;">
+                <canvas id="level-chart"></canvas>
+              </div>
             </div>
             <div class="border rounded w-100 h-100 p-3">
-              <p>nível da água</p>
+              <div id="overview-water-level" class="h-100">
+                <div class="position-relative h-100">
+                  <div class="d-flex align-items-end rounded w-100 h-100">
+                    <div id="water-background" class="rounded opacity-50 w-100" style="background-color: skyblue;"></div>
+                    <div>
+                      <h1 class="position-absolute top-50 start-50 translate-middle m-0"><span id="water-percentage"></span>%</h1>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
           <div class="d-flex flex-column gap-3 w-100 h-100">
             <div class="border rounded w-100 h-100 p-3">
-              <p>escala de ph</p>
+              <div id="overview-ph-scale" class="h-100">
+                <style>
+                  .ph-bar { opacity: 25%; }
+                  .module-ph-level { opacity: 100%; }
+                </style>
+                <div id="ph-scale" class="d-flex gap-2 w-100 h-100">
+                  {% for phLevel in phLevels %}
+                    {% include 'aquasite/partials/ph-level.html' %}
+                  {% endfor %}
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -48,7 +103,11 @@
         <div class="d-flex flex-column gap-3 h-100" style="width: 10%;">
           <div class="d-flex flex-column gap-3 w-100 h-100">
             <div class="border rounded-pill w-100 h-100 p-3">
-              <p>temperatura</p>
+              <div id="thermometer" class="h-100">
+                <div class="d-flex justify-content-center align-items-end border border rounded-pill p-1 w-100 h-100" style="min-width: 48px;">
+                  <div id="thermometer-level" class="rounded-pill w-100" style=" background-color: tomato;"></div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
