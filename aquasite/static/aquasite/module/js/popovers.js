@@ -25,16 +25,18 @@ export function generateTemperaturePopover(djangoData) {
   return generatePopover(
     'thermometer',
     'left',
-    '<p>A temperatura atual da água está em:</p> <p><span class="h2">' + temperature + '</span> <br> <span class="h4">' + rate + '</span></p> <p class="m-0">Mantenha a temperatura dentro desse intervalo para garantir eficiência e segurança. Caso a temperatura esteja fora dessa faixa, ajuste o sistema de aquecimento ou resfriamento conforme necessário.</p>'
+    'Temperatura',
+    '<p>Este indicador fornece a temperatura atual da água, que está em:</p> <p class="mb-2"><span class="h2">' + temperature + ' °C</span></p> <p class="m-0"><span class="h4">' + rate + '</span></p>'
   )
 }
 
-function generatePopover(trigger, placement, content) {
+function generatePopover(trigger, placement, title, content) {
   const popoverTrigger = document.getElementById(trigger)
   function createPopover() {
     return new bootstrap.Popover(popoverTrigger, {
       trigger: 'manual',
       placement: placement,
+      title: title,
       content: content,
       html: true,
       container: 'body'
@@ -61,24 +63,28 @@ document.addEventListener('DOMContentLoaded', () => {
   generatePopover(
     'geral-quality',
     'right',
-    '<p class="m-0">Este indicador fornece uma visão geral da qualidade da água monitorada pelo dispositivo, incluindo aspectos como temperatura, pH, turbidez e nível. Ele ajuda a avaliar se a água está dentro dos padrões ideais.</p>'
+    'Qualidade geral',
+    '<p class="m-0">Este indicador fornece uma visão geral da atual qualidade da água monitorada pelo dispositivo, incluindo ps aspectos de temperatura, pH, turbidez e nível da água.</p>'
   )
 
   generatePopover(
     'turbidity',
-    'bottom',
-    '<p class="m-0">Este indicador mostra o nível de turbidez da água, que é uma medida da clareza do líquido. A turbidez é influenciada pela presença de partículas sólidas, como sedimentos, algas ou poluentes, e pode afetar a qualidade e segurança da água. Valores elevados de turbidez podem indicar a necessidade de tratamento adicional.</p>'
+    'left',
+    'Turbidez',
+    '<p class="m-0">Este indicador mostra o nível atual de turbidez da água, que é uma medida da clareza do líquido. A turbidez é influenciada pela presença de partículas sólidas.</p>'
   )
 
   generatePopover(
     'water-level',
-    'top',
-    '<p class="m-0">Este indicador exibe o nível atual da água monitorada pelo dispositivo. Ele mostra o volume da água em relação aos parâmetros configurados. Manter o nível dentro dos limites ideais é crucial para garantir a eficiência e segurança do sistema.</p>'
+    'left',
+    'Nível da água',
+    '<p class="m-0">Este indicador exibe o nível atual da água monitorada pelo dispositivo.</p>'
   )
 
   generatePopover(
     'ph',
     'top',
-    '<p>Este indicador mostra o nível de pH da água, que mede sua acidez ou alcalinidade, variando de 0 a 14, com 7 sendo neutro. Valores abaixo de 7 indicam acidez, enquanto valores acima de 7 indicam alcalinidade.</p> <p class="m-0">Manter o pH em níveis apropriados é crucial para a eficiência dos processos e para garantir a segurança do uso da água. Um pH fora da faixa ideal pode afetar a qualidade da água e o desempenho dos sistemas que dependem dela.</p>'
+    'Escala PH',
+    '<p class="m-0">Este indicador mostra o nível de pH da água, que mede sua acidez ou alcalinidade, variando de 0 a 14, com 7 sendo neutro. Valores abaixo de 7 indicam acidez, enquanto valores acima de 7 indicam alcalinidade.</p>'
   )
 })
