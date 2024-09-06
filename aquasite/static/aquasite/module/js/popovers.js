@@ -40,7 +40,7 @@ function generatePopover(trigger, placement, content) {
       container: 'body'
     })
   }
-  let popover = null
+  let popover = undefined
 
   popoverTrigger.addEventListener('mouseenter', () => {
     const popoverElements = document.querySelectorAll('[role="tooltip"]')
@@ -51,7 +51,9 @@ function generatePopover(trigger, placement, content) {
     popover.show()
   })
   popoverTrigger.addEventListener('mouseleave', () => {
-    popover.hide()
+    if (popover != undefined) {
+      popover.hide()
+    }
   })
 }
 
