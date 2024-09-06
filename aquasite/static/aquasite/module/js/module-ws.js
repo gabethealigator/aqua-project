@@ -1,9 +1,9 @@
 import * as charts from './charts.js'
 import * as PHScale from './ph-scale.js'
-import * as temperature from './temperature.js'
+import * as waterTemperature from './temperature.js'
 import * as waterLevel from './water-level.js'
 import * as geralQuality from './geral-quality.js'
-import { generateTemperaturePopover } from './popovers.js'
+import { updateTemperaturePopover } from './popovers.js'
 
 const moduleId = document.getElementById('module').getAttribute('data-module-id')
 let moduleSocket = new WebSocket(
@@ -18,7 +18,7 @@ moduleSocket.onmessage = (e) => {
   console.log(djangoData)
 
   PHScale.updateModulePHLevel(djangoData)
-  temperature.updateModuleTemperatureLevelAndCondition(djangoData)
+  waterTemperature.updateModuleTemperatureLevelAndCondition(djangoData)
   waterLevel.updateWaterLevel(djangoData)
   geralQuality.updateWaterGeralQuality(djangoData)
 
@@ -27,5 +27,5 @@ moduleSocket.onmessage = (e) => {
   // charts.updateTemperatureChartData(djangoData)
   charts.updateLevelChartData(djangoData)
 
-  generateTemperaturePopover(djangoData)
+  updateTemperaturePopover(djangoData)
 }

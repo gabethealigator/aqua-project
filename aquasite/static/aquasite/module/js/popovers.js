@@ -1,4 +1,4 @@
-export function generateTemperaturePopover(djangoData) {
+export function updateTemperaturePopover(djangoData) {
   let temperature = djangoData.temperature
   let rate = ''
 
@@ -22,16 +22,20 @@ export function generateTemperaturePopover(djangoData) {
     rate = 'Péssima'
   }
 
-  return generatePopover(
-    'thermometer',
-    'left',
-    'Temperatura',
-    '<p>Este indicador fornece a temperatura atual da água, que está em:</p> <p class="mb-2"><span class="h2">' + temperature + ' °C</span></p> <p class="m-0"><span class="h4">' + rate + '</span></p>'
-  )
+  const thermometer = document.getElementById('thermometer')
+  thermometer.addEventListener('mouseenter', () => {
+    setTimeout(() => {
+      const temperatureNumber = document.getElementById('temperature-number')
+      const temperatureRate = document.getElementById('temperature-rate')
+      temperatureNumber.innerText = temperature
+      temperatureRate.innerText = rate
+    }, 100)
+  })
 }
 
 function generatePopover(trigger, placement, title, content) {
   const popoverTrigger = document.getElementById(trigger)
+  let timeoutId
   function createPopover() {
     return new bootstrap.Popover(popoverTrigger, {
       trigger: 'manual',
@@ -42,20 +46,17 @@ function generatePopover(trigger, placement, title, content) {
       container: 'body'
     })
   }
-  let popover = undefined
+  let popover = createPopover()
 
   popoverTrigger.addEventListener('mouseenter', () => {
-    const popoverElements = document.querySelectorAll('[role="tooltip"]')
-    popoverElements.forEach(element => {
-      element.remove()
-    })
-    popover = createPopover()
-    popover.show()
+    popover.update()
+    timeoutId = setTimeout(() => {
+      popover.show()
+    }, 100)
   })
   popoverTrigger.addEventListener('mouseleave', () => {
-    if (popover != undefined) {
-      popover.hide()
-    }
+    clearTimeout(timeoutId)
+    popover.hide()
   })
 }
 
@@ -86,5 +87,12 @@ document.addEventListener('DOMContentLoaded', () => {
     'top',
     'Escala PH',
     '<p class="m-0">Este indicador mostra o nível de pH da água, que mede sua acidez ou alcalinidade, variando de 0 a 14, com 7 sendo neutro. Valores abaixo de 7 indicam acidez, enquanto valores acima de 7 indicam alcalinidade.</p>'
+  )
+
+  generatePopover(
+    'thermometer',
+    'left',
+    'Temperatura',
+    '<p>Este indicador fornece a temperatura atual da água, que está em:</p> <p class="mb-2"><span class="h2"><span id="temperature-number"></span> °C</span></p> <p class="m-0"><span class="h4"><span id="temperature-rate"></span></span></p>'
   )
 })
