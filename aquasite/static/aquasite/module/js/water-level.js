@@ -6,4 +6,6 @@ export function updateWaterLevel(djangoData) {
 
   waterLevelPercentage.innerText = waterLevel
   waterLevelBackground.style.height = '' + waterLevel + '%'
+
+  waterLevel > 100 ? waterLevelBackground.style.height = '100%' : waterLevelBackground.style.height = '' + waterLevel + '%'
 }

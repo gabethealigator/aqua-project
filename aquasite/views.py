@@ -6,7 +6,7 @@ from django.core.mail import send_mail
 
 from decouple import config
 
-import pyrebase, random, string
+import pyrebase, random, string, json
 
 
 firebaseConfig = {
@@ -152,14 +152,33 @@ class userDashboard:
     name = database.child('UsersData').child(userId).child('name').get().val()
     email = database.child('UsersData').child(userId).child('email').get().val()
     modules = database.child('UsersData').child(userId).child('modules').get().val()
+    profilePicUrl = database.child('UsersData').child(userId).child('profilePicUrl').get().val()
     if modules != None:
       modules = len(list(modules.keys()))
     elif modules == None:
       modules = 0
+
+    if profilePicUrl == None:
+      profilePicUrl = '../../../static/aquasite/images/gray.jpg'
+
     context = {
       'name': name,
       'email': email,
       'modules': modules,
+      'profilePicUrl': profilePicUrl,
     }
     return render(request, 'aquasite/pages/account.html', context)
+
+  def saveProfilePic(request):
+    global userId
+    if request.method == 'POST':
+      try:
+        profile_pic_url = request.POST.get('profile-pic-url')
+        database.child('UsersData').child(userId).update({'profilePicUrl': profile_pic_url})
+        return redirect('account')
+      except json.JSONDecodeError:
+        return JsonResponse({'error': 'Dados inválidos.'}, status=400)
+    else:
+      return JsonResponse({'error': 'Método não permitido.'}, status=405)
+      
   

@@ -15,5 +15,7 @@ urlpatterns = [
   path('dashboard/', views.userDashboard.dashboard, name='dashboard'),
   path('dashboard/module/<str:moduleId>/', views.userDashboard.module, name='module'),
   path('dashboard/account/', views.userDashboard.account, name='account'),
-  path('dashboard/reports/', views.userDashboard.reports, name='reports')
+  path('dashboard/reports/', views.userDashboard.reports, name='reports'),
+
+  path('save-profile-pic/', views.userDashboard.saveProfilePic, name='save-profile-pic'),
 ]
