@@ -1,4 +1,3 @@
-
 export const turbidityChartCanvas = document.getElementById('turbidity-chart');
 export let turbidityChartData = {
   type: 'line',
@@ -11,6 +10,9 @@ export let turbidityChartData = {
     }]
   },
   options: {
+    responsive: true,
+    maintainAspectRatio: false,
+
     scales: {
       y: {
         min: 0,

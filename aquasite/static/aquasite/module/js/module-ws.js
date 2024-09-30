@@ -22,9 +22,7 @@ moduleSocket.onmessage = (e) => {
   waterLevel.updateWaterLevel(djangoData)
   geralQuality.updateWaterGeralQuality(djangoData)
 
-  // charts.updatePHChartData(djangoData)
   charts.updateTurbidityChartData(djangoData)
-  // charts.updateTemperatureChartData(djangoData)
   charts.updateLevelChartData(djangoData)
 
   updateTemperaturePopover(djangoData)
