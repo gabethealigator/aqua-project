@@ -1,5 +1,5 @@
 export function updateTemperaturePopover(djangoData) {
-  let temperature = djangoData.temperature
+  let temperature = Math.round(djangoData.temperature)
   let rate = ''
 
   if (temperature >= 0 && temperature < 6) {

@@ -16,11 +16,12 @@ class ModuleConsumer(AsyncWebsocketConsumer):
       module = database.child('UsersData').child(userId).child('modules').child(self.moduleId).child('statistics').get().val()
       ph = module['PH']
       temperature = module['TEMP']
+      turbidity = module['TURBIDITY']
       level = module['LEVEL']
       await self.send(json.dumps({
           'ph': ph,
           'temperature': temperature,
-          'turbidity': 0,
+          'turbidity': turbidity,
           'level': level,
         }))
       await sleep(2.5)

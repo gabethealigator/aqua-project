@@ -2,6 +2,7 @@ import * as charts from './charts.js'
 import * as PHScale from './ph-scale.js'
 import * as waterTemperature from './temperature.js'
 import * as waterLevel from './water-level.js'
+import * as turbidity from './turbidity.js'
 import * as geralQuality from './geral-quality.js'
 import { updateTemperaturePopover } from './popovers.js'
 
@@ -20,6 +21,7 @@ moduleSocket.onmessage = (e) => {
   PHScale.updateModulePHLevel(djangoData)
   waterTemperature.updateModuleTemperatureLevelAndCondition(djangoData)
   waterLevel.updateWaterLevel(djangoData)
+  turbidity.updateModuleTurbidity(djangoData)
   geralQuality.updateWaterGeralQuality(djangoData)
 
   charts.updateTurbidityChartData(djangoData)

@@ -4,7 +4,7 @@ export let turbidityChartData = {
   data: {
     labels: ['', '', '', '', ''],
     datasets: [{
-      label: 'Temperatura da água',
+      label: 'Turbidez da água',
       data: [20, 20, 20, 20, 20],
       borderWidth: 1
     }]
@@ -16,7 +16,7 @@ export let turbidityChartData = {
     scales: {
       y: {
         min: 0,
-        max: 100,
+        max: 1000,
       }
     },
 
