@@ -12,24 +12,20 @@ export function updateModuleTurbidity(djangoData) {
   }
   moduleTurbidityNumber.innerText = roundToDecimal(moduleTurbidity, 1)
 
-  if (moduleTurbidity >= 0 && moduleTurbidity <= 5) {
-    moduleTurbidityState.innerText = 'Muito limpa'
-    root.style.setProperty('--turbidity-image', ' url(../../../static/aquasite/images/low-turbidity.jpg)')
-  }
-  if (moduleTurbidity >= 5 && moduleTurbidity <= 50) {
+  if (moduleTurbidity >= 4.2) {
     moduleTurbidityState.innerText = 'Limpa'
     root.style.setProperty('--turbidity-image', ' url(../../../static/aquasite/images/low-turbidity.jpg)')
   }
-  if (moduleTurbidity >= 50 && moduleTurbidity <= 100) {
+  if (moduleTurbidity >= 3.5 && moduleTurbidity < 4.2) {
     moduleTurbidityState.innerText = 'Um pouco turva'
     root.style.setProperty('--turbidity-image', ' url(../../../static/aquasite/images/medium-turbidity.jpg)')
   }
-  if (moduleTurbidity >= 100 && moduleTurbidity <= 500) {
+  if (moduleTurbidity >= 2.5 && moduleTurbidity < 3.5) {
     moduleTurbidityState.innerText = 'Turva'
     root.style.setProperty('--turbidity-image', ' url(../../../static/aquasite/images/medium-turbidity.jpg)')
   }
-  if (moduleTurbidity >= 500) {
-    moduleTurbidityState.innerText = 'Muito suja'
+  if (moduleTurbidity < 2.5) {
+    moduleTurbidityState.innerText = 'Muito turva'
     root.style.setProperty('--turbidity-image', ' url(../../../static/aquasite/images/high-turbidity.jpg)')
   }
 }
