@@ -1,0 +1,10 @@
+<div class="d-flex flex-column align-items-center justify-content-center rounded w-100 h-100">
+  <p>Qual a altura do recipiente em centímetros?</p>
+  <form action="{% url 'save-aquarium-height' moduleId=moduleId %}" method="post">
+    {% csrf_token %}
+    <div class="input-group input-group-sm mb-3" style="width: auto;">
+      <input type="text" class="form-control mb-3" aria-describedby="inputGroup-sizing-sm" name="aquarium-height" style="width: auto; pointer-events: all;" required>
+      <button class="btn btn-outline-secondary" type="submit" style="height: 31px; pointer-events: all;">Enviar</button>
+    </div>
+  </form>
+</div>

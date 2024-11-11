@@ -99,13 +99,14 @@
             </div>
             <div id="water-level" class="border rounded w-100 h-100 p-3">
               <div id="overview-water-level" class="pe-none h-100">
-                <div class="position-relative h-100">
-                  <div class="d-flex align-items-end rounded w-100 h-100">
-                    <div id="water-background" class="rounded opacity-50 w-100" style="background-color: skyblue;"></div>
-                    <div>
-                      <h1 class="position-absolute top-50 start-50 translate-middle m-0"><span id="water-percentage"></span>%</h1>
-                    </div>
-                  </div>
+                
+
+                <div class="position-relative h-100" style="z-index: 1000;">
+                  {% if aquariumHeight == True %}
+                    {% include 'aquasite/partials/water-level.html' %}
+                  {% elif aquariumHeight == False %}
+                    {% include 'aquasite/partials/ask-aquarium-height.html' %}
+                  {% endif %}
                 </div>
               </div>
             </div>

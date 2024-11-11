@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 
+from django.urls import reverse
+
 from django.http import HttpResponse, JsonResponse
 
 from django.core.mail import send_mail
@@ -116,6 +118,11 @@ class userDashboard:
       moduleName = request.POST.get('module-name')
       module().update({'name': moduleName})
 
+    aquariumHeight = False
+    if 'aquariumHeight' in moduleData:
+      aquariumHeight = True
+
+
     class phLevel:
       def __init__(self, color, number):
         self.color = color
@@ -140,10 +147,18 @@ class userDashboard:
 
     context = {
       'moduleId': moduleId,
-      'moduleName': moduleName, 
+      'moduleName': moduleName,
+      'aquariumHeight': aquariumHeight, 
       'phLevels': phLevels,
     }
     return render(request, 'aquasite/pages/module.html', context)
+  
+  def saveAquariumHeight(request, moduleId):
+    if request.method == 'POST':
+      aquariumHeight = request.POST.get('aquarium-height')
+      database.child('UsersData').child(userId).child('modules').child(moduleId).child('aquariumHeight').set(aquariumHeight)
+    
+    return redirect(reverse('module', kwargs={'moduleId': moduleId}))
 
   def reports(request):
     return render(request, 'aquasite/pages/reports.html')

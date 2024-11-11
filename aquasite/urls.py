@@ -18,4 +18,5 @@ urlpatterns = [
   path('dashboard/reports/', views.userDashboard.reports, name='reports'),
 
   path('save-profile-pic/', views.userDashboard.saveProfilePic, name='save-profile-pic'),
+  path('save-aquarium-height/<str:moduleId>/', views.userDashboard.saveAquariumHeight, name='save-aquarium-height'),
 ]
