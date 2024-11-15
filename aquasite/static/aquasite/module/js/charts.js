@@ -76,9 +76,30 @@ export let levelChartData = {
 export let levelChart = new Chart(levelChartCanvas, levelChartData)
 
 export function updateLevelChartData(djangoData) {
+  function calculateWaterLevelPercentage() {
+    let distanceOfWater = Number(Math.round(djangoData.level))
+    let aquariumHeight = Number(djangoData.aquariumHeight)
+    let maxDistance = aquariumHeight + 20
+
+    const waterLevelHTMLPercentage = document.getElementById('water-percentage')
+    const waterLevelBackground = document.getElementById('water-background')
+
+    let waterLevelPercentage = 0
+
+    if (waterLevelHTMLPercentage != null && waterLevelBackground != null) {
+      if (distanceOfWater <= maxDistance && distanceOfWater >= 20) 
+        waterLevelPercentage = Math.round(Math.abs((((distanceOfWater - 20) / aquariumHeight) * 100) - 100))
+    }
+
+    if (distanceOfWater > maxDistance) return waterLevelPercentage = 100
+    if (distanceOfWater < 20) return waterLevelPercentage = 0
+
+    return waterLevelPercentage
+  }
+
   let newLevelChartData = levelChartData.data.datasets[0].data
   newLevelChartData.shift()
-  newLevelChartData.push(djangoData.level)
+  newLevelChartData.push(calculateWaterLevelPercentage())
   levelChartData.data.datasets[0].data = newLevelChartData
   levelChart.update()
 }
