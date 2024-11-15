@@ -2,9 +2,7 @@ export function updateTemperaturePopover(djangoData) {
   let temperature = Math.round(djangoData.temperature)
   let rate = ''
 
-  if (temperature >= 0 && temperature < 6) {
-    rate = 'Excelente'
-  } else if (temperature >= 6 && temperature < 16) {
+  if (temperature < 6 && temperature < 16) {
     rate = 'Boa'
   } else if (temperature >= 16 && temperature < 21) {
     rate = 'Moderada'

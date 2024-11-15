@@ -1,45 +1,45 @@
 export function updateWaterGeralQuality(djangoData) {
   const ranges = {
-    ph: { good: [6.5, 8.5], medium: [5.5, 9.5] },
-    temperature: { good: [15, 25], medium: [10, 30] },
-    turbidity: { good: [0, 5], medium: [5, 10] },
-    waterLevel: { good: [1, 3], medium: [3, 5] }
-  };
-
+    ph: { good: [6.5, 8.5], medium: [[4, 6], [9, 10]], bad: [[0, 4], [10, 14]] },
+    temperature: { good: [6, 26], medium: [[0, 6], [26, 36]], bad: [36, Infinity] },
+    turbidity: { good: [4.5, 5], medium: [[2.5, 4.5]], bad: [[0, 2.5]] },
+    level: { good: [20, 25], medium: [[25, 32]], bad: [32, Infinity] }
+  }
+  
   const weights = {
     ph: 30,
     temperature: 30,
     turbidity: 20,
-    waterLevel: 20
-  };
-
-  const params = ['ph', 'temperature', 'turbidity', 'waterLevel'];
+    level: 20
+  }
+  
+  const params = ['ph', 'temperature', 'turbidity', 'level']
   let qualityScore = 0;
-
+  
   params.forEach(param => {
-    const value = djangoData[param];
-    const range = ranges[param];
-    const weight = weights[param];
-
+    const value = djangoData[param]
+    const range = ranges[param]
+    const weight = weights[param]
+  
     if (value >= range.good[0] && value <= range.good[1]) {
-      qualityScore += weight;
+      qualityScore += weight
     }
-    if (value >= range.medium[0] && value < range.good[0] || value > range.good[1] && value <= range.medium[1]) {
-      qualityScore += weight * 2 / 3;
+    else if (range.medium.some(interval => value >= interval[0] && value <= interval[1])) {
+      qualityScore += weight * 2 / 3
     }
-    if (value < range.medium[0] || value > range.medium[1]) {
-      qualityScore += weight / 3;
+    else if (range.bad.some(interval => value >= interval[0] && value <= interval[1])) {
+      qualityScore += weight / 3
     }
-  });
-
-  qualityScore = parseFloat(qualityScore.toFixed(2));
-
-  const percentage = document.getElementById('geral-quality-percentage');
-  const bodyStyle = window.getComputedStyle(document.querySelector('body'));
-  const bodyBgColor = bodyStyle.backgroundColor;
+  })
+  
+  qualityScore = parseFloat(Math.round(qualityScore))
+    
+  const percentage = document.getElementById('geral-quality-percentage')
+  const bodyStyle = window.getComputedStyle(document.querySelector('body'))
+  const bodyBgColor = bodyStyle.backgroundColor
 
   percentage.innerText = `${qualityScore}`;
-  document.documentElement.style.setProperty('--progress', qualityScore + '%');
-  document.documentElement.style.setProperty('--bg-color', bodyBgColor);
+  document.documentElement.style.setProperty('--progress', qualityScore + '%')
+  document.documentElement.style.setProperty('--bg-color', bodyBgColor)
 }
 
