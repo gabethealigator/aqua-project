@@ -1,16 +1,23 @@
 export function updateWaterLevel(djangoData) {
-  let waterLevel = Math.round(djangoData.level)
-  let aquariumHeight = djangoData.aquariumHeight
+  let distanceOfWater = Number(Math.round(djangoData.level))
+  let aquariumHeight = Number(djangoData.aquariumHeight)
+  let maxDistance = aquariumHeight + 20
 
   const waterLevelHTMLPercentage = document.getElementById('water-percentage')
   const waterLevelBackground = document.getElementById('water-background')
 
   if (waterLevelHTMLPercentage != null && waterLevelBackground != null) {
 
-    // water level percentage calc here
+    let waterLevelPercentage = 0
+    if (distanceOfWater <= maxDistance && distanceOfWater >= 20) 
+      waterLevelPercentage = Math.round(Math.abs((((distanceOfWater - 20) / aquariumHeight) * 100) - 100))
 
-    waterLevelHTMLPercentage.innerText = waterLevel
-    waterLevelBackground.style.height = '' + waterLevel + '%'
-    waterLevel > 100 ? waterLevelBackground.style.height = '100%' : waterLevelBackground.style.height = '' + waterLevel + '%'
+    waterLevelHTMLPercentage.innerText = waterLevelPercentage
+    waterLevelBackground.style.height = '' + waterLevelPercentage + '%'
+
+    if (distanceOfWater > maxDistance) {
+      waterLevelHTMLPercentage.innerText = '100'
+      waterLevelBackground.style.height = '100%'
+    }
   }
 }

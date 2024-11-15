@@ -30,9 +30,18 @@ export let turbidityChartData = {
 export let turbidityChart = new Chart(turbidityChartCanvas, turbidityChartData)
 
 export function updateTurbidityChartData(djangoData) {
+  function convertVoltageToNTU(voltage, voltageMin = 0, voltageMax = 5) {
+    if (voltage > voltageMax) voltage = voltageMax
+    if (voltage < voltageMin) voltage = voltageMin
+
+    const ntu = ((voltageMax - voltage) / (voltageMax - voltageMin)) * 1000
+
+    return ntu.toFixed(2)
+  }
+
   let newTurbidityChartData = turbidityChartData.data.datasets[0].data
   newTurbidityChartData.shift()
-  newTurbidityChartData.push(djangoData.turbidity)
+  newTurbidityChartData.push(convertVoltageToNTU(djangoData.turbidity))
   turbidityChartData.data.datasets[0].data = newTurbidityChartData
   turbidityChart.update()
 }
