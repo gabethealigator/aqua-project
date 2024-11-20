@@ -5,6 +5,7 @@ import * as waterLevel from './water-level.js'
 import * as turbidity from './turbidity.js'
 import * as geralQuality from './geral-quality.js'
 import { updateTemperaturePopover } from './popovers.js'
+import { updateProblems } from './problems.js';
 
 const moduleId = document.getElementById('module').getAttribute('data-module-id')
 let moduleSocket = new WebSocket(
@@ -28,4 +29,5 @@ moduleSocket.onmessage = (e) => {
   charts.updateLevelChartData(djangoData)
 
   updateTemperaturePopover(djangoData)
+  updateProblems(djangoData)
 }
