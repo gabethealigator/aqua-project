@@ -1,10 +1,20 @@
 export function updateProblems(djangoData) {
   const problemsList = document.getElementById('problems-list');
-  problemsList.innerHTML = ''; // Clear existing problems
+  problemsList.innerHTML = '';
   
   const problems = [];
   
-  // Check temperature problems
+  let distanceOfWater = Number(Math.round(djangoData.level));
+  let aquariumHeight = Number(djangoData.aquariumHeight);
+  let maxDistance = aquariumHeight + 20;
+  let waterLevelPercentage = 0;
+
+  if (distanceOfWater <= maxDistance && distanceOfWater >= 20) {
+    waterLevelPercentage = Math.round(Math.abs((((distanceOfWater - 20) / aquariumHeight) * 100) - 100));
+  } else if (distanceOfWater > maxDistance) {
+    waterLevelPercentage = 100;
+  }
+  
   if (djangoData.temperature < 6) {
     problems.push({
       type: 'danger',
@@ -19,7 +29,6 @@ export function updateProblems(djangoData) {
     });
   }
 
-  // Check pH problems
   if (djangoData.ph < 6.5) {
     problems.push({
       type: 'warning',
@@ -34,7 +43,6 @@ export function updateProblems(djangoData) {
     });
   }
 
-  // Check turbidity problems
   if (djangoData.turbidity < 2.5) {
     problems.push({
       type: 'warning',
@@ -43,16 +51,31 @@ export function updateProblems(djangoData) {
     });
   }
 
-  // Check water level problems
-  if (djangoData.level < 20) {
+  if (waterLevelPercentage < 30) {
     problems.push({
       type: 'danger',
       message: 'Nível crítico',
-      detail: 'Nível da água muito baixo'
+      detail: `Nível da água em ${waterLevelPercentage}% - Necessário reposição urgente`
+    });
+  } else if (waterLevelPercentage < 50) {
+    problems.push({
+      type: 'warning',
+      message: 'Nível baixo',
+      detail: `Nível da água em ${waterLevelPercentage}% - Considere adicionar água`
+    });
+  } else if (waterLevelPercentage > 95) {
+    problems.push({
+      type: 'warning',
+      message: 'Nível muito alto',
+      detail: `Nível da água em ${waterLevelPercentage}% - Considere remover água`
     });
   }
 
-  // Display problems or "no problems" message
+  const totalProblemsElement = document.getElementById('total-problems');
+  if (totalProblemsElement) {
+    totalProblemsElement.textContent = problems.length;
+  }
+
   if (problems.length === 0) {
     problemsList.innerHTML = `
       <div class="list-group-item list-group-item-success d-flex align-items-center">
