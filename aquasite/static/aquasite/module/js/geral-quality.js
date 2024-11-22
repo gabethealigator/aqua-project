@@ -2,7 +2,7 @@ export function updateWaterGeralQuality(djangoData) {
   const ranges = {
     ph: { good: [6.5, 8.5], medium: [[4, 6], [9, 10]], bad: [[0, 4], [10, 14]] },
     temperature: { good: [6, 26], medium: [[0, 6], [26, 36]], bad: [36, Infinity] },
-    turbidity: { good: [4.5, 5], medium: [[2.5, 4.5]], bad: [[0, 2.5]] },
+    turbidity: { good: [6.5, Infinity], medium: [[4.5, 6.5]], bad: [[0, 4.5]] },
     level: { good: [20, 25], medium: [[25, 32]], bad: [32, Infinity] }
   }
   
