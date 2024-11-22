@@ -4,9 +4,9 @@ export function updateTemperaturePopover(djangoData) {
 
   if (temperature < 6 && temperature < 16) {
     rate = 'Boa'
-  } else if (temperature >= 16 && temperature < 21) {
+  } else if (temperature >= 16 && temperature < 23) {
     rate = 'Moderada'
-  } else if (temperature >= 21 && temperature < 26) {
+  } else if (temperature >= 23 && temperature < 26) {
     rate = 'Moderada a Ruim'
   } else if (temperature >= 26 && temperature < 31) {
     rate = 'Ruim'

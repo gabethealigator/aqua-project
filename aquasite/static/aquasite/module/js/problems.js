@@ -49,6 +49,12 @@ export function updateProblems(djangoData) {
       message: 'Turbidez alta',
       detail: 'Água extremamente turva'
     });
+  } else if (djangoData.turbidity < 6.5) {
+    problems.push({
+      type: 'warning',
+      message: 'Turbidez parcial',
+      detail: 'Água parcialmente turva'
+    });
   }
 
   if (waterLevelPercentage < 30) {
