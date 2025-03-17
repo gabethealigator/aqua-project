@@ -135,10 +135,6 @@ O aplicativo web (este repositório) oferece:
 
 Contribuições são bem-vindas! Fique à vontade para enviar um Pull Request.
 
-## Licença
-
-Este projeto está licenciado sob a Licença MIT - veja o arquivo LICENSE para mais detalhes.
-
 ## Agradecimentos
 
 - Agradecimentos especiais a todos os colaboradores e orientadores que ajudaram no desenvolvimento deste projeto de TCC
